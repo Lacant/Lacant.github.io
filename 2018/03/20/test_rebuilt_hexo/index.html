@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hexo 小白," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="托管在github上的blog有两年没用了，今天在旧文件的基础上，重新用hexo进行deploy。同时也是对git和hexo的一次重新梳理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Test new hexo">
+<meta property="og:title" content="rebuilt hexo on github">
 <meta property="og:url" content="https://lacant.github.io/2018/03/20/test_rebuilt_hexo/index.html">
 <meta property="og:site_name" content="婷婷的House">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2018-03-20T11:36:08.337Z">
+<meta property="og:description" content="托管在github上的blog有两年没用了，今天在旧文件的基础上，重新用hexo进行deploy。同时也是对git和hexo的一次重新梳理。">
+<meta property="og:updated_time" content="2018-03-20T15:29:51.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test new hexo">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="rebuilt hexo on github">
+<meta name="twitter:description" content="托管在github上的blog有两年没用了，今天在旧文件的基础上，重新用hexo进行deploy。同时也是对git和hexo的一次重新梳理。">
 
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="https://lacant.github.io/2018/03/20/test_rebuilt_hexo/"/>
 
-  <title> Test new hexo | 婷婷的House </title>
+  <title> rebuilt hexo on github | 婷婷的House </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +288,7 @@
             
             
               
-                Test new hexo
+                rebuilt hexo on github
               
             
           </h1>
@@ -300,11 +300,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-03-20T19:35:15+08:00" content="2018-03-20">
+            <time itemprop="dateCreated" datetime="2018-03-20T21:55:29+08:00" content="2018-03-20">
               2018-03-20
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -328,12 +347,61 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<ul>
-<li>rebuilt hexo on March 20th 2018</li>
-<li>markdown with notepadd++</li>
+        <p>托管在github上的blog有两年没用了，今天在旧文件的基础上，重新用hexo进行deploy。同时也是对git和hexo的一次重新梳理。<br><a id="more"></a></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li>Node.js</li>
+<li>Git</li>
 </ul>
-
+<p>用以下指令查看是否安装,正确安装的情况下会显示版本号（PS:选最新的版本）</p>
+<pre><code>$ node -v
+$ npm -v
+</code></pre><h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><h4 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h4><ul>
+<li><p>这里的“username”是可以任意填写的</p>
+<pre><code>$ git config --global user.name &quot;username&quot;
+$ git config --global user.email &quot;johndoe@example.com&quot;
+</code></pre></li>
+<li><p>查看配置信息</p>
+<pre><code>$ git config --list
+</code></pre></li>
+</ul>
+<h4 id="密钥配置"><a href="#密钥配置" class="headerlink" title="密钥配置"></a>密钥配置</h4><ul>
+<li><p>查看是否已经有了密钥</p>
+<ul>
+<li>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings\$USER;</li>
+<li>在主目录下找到 .ssh 文件夹，进去之看查看下有没有 id_rsa 和 id_rsa.pub 这两个文件分别对应私钥与公钥;</li>
+<li><p>生成密钥</p>
+<pre><code>$ git ssh-keygen -t rsa -C “username@example.com”
+</code></pre></li>
+<li><p>添加密钥到ssh</p>
+<pre><code>$ ssh-add id_rsa.pub
+</code></pre></li>
+<li>添加密钥到github</li>
+<li><p>测试密钥是否成功添加</p>
+<pre><code>$ ssh git@github.com
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h3><h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><ul>
+<li><p>Hexo的安装，可以理解为安装了一个hexo的独立程序，视自己需求，是否新建一个文件夹，建议新建;</p>
+<pre><code>$ npm install hexo-cli -g
+$ npm install hexo --save
+</code></pre></li>
+<li><p>查看是否成功安装</p>
+<pre><code>$ hexo -v
+</code></pre></li>
+</ul>
+<h4 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h4><ul>
+<li><p>如果hexo的安装是一个独立程序的话，hexo配置的过程就是安装一个完整网站的全部内容，所以此时是要新建一个空文件夹的。<br>理论上我觉得可以多次进行hexo的配置，每次的配置就是重新建一个blog，新建的文件夹就是blog的全部内容。</p>
+<pre><code>$ hexo init
+$ npm install
+</code></pre></li>
+</ul>
+<h4 id="试运行hexo"><a href="#试运行hexo" class="headerlink" title="试运行hexo"></a>试运行hexo</h4><pre><code>$ hexo clean
+$ hexo g
+$ hexo d
+$ hexo s       % 运行本地服务 http://localhost:4000
+</code></pre>
       
     </div>
 
@@ -352,6 +420,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo-小白/" rel="tag">#hexo 小白</a>
+          
+        </div>
       
 
       
@@ -501,7 +575,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git配置"><span class="nav-number">2.</span> <span class="nav-text">Git配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户信息"><span class="nav-number">2.1.</span> <span class="nav-text">用户信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密钥配置"><span class="nav-number">2.2.</span> <span class="nav-text">密钥配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo配置"><span class="nav-number">3.</span> <span class="nav-text">Hexo配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.1.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Hexo"><span class="nav-number">3.2.</span> <span class="nav-text">配置Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#试运行hexo"><span class="nav-number">3.3.</span> <span class="nav-text">试运行hexo</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

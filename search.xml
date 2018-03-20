@@ -4,14 +4,63 @@
   
     
     <entry>
-      <title><![CDATA[Test new hexo]]></title>
+      <title><![CDATA[rebuilt hexo on github]]></title>
       <url>https://lacant.github.io/2018/03/20/test_rebuilt_hexo/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<ul>
-<li>rebuilt hexo on March 20th 2018</li>
-<li>markdown with notepadd++</li>
+      <content type="html"><![CDATA[<p>托管在github上的blog有两年没用了，今天在旧文件的基础上，重新用hexo进行deploy。同时也是对git和hexo的一次重新梳理。<br><a id="more"></a></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li>Node.js</li>
+<li>Git</li>
 </ul>
-]]></content>
+<p>用以下指令查看是否安装,正确安装的情况下会显示版本号（PS:选最新的版本）</p>
+<pre><code>$ node -v
+$ npm -v
+</code></pre><h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><h4 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h4><ul>
+<li><p>这里的“username”是可以任意填写的</p>
+<pre><code>$ git config --global user.name &quot;username&quot;
+$ git config --global user.email &quot;johndoe@example.com&quot;
+</code></pre></li>
+<li><p>查看配置信息</p>
+<pre><code>$ git config --list
+</code></pre></li>
+</ul>
+<h4 id="密钥配置"><a href="#密钥配置" class="headerlink" title="密钥配置"></a>密钥配置</h4><ul>
+<li><p>查看是否已经有了密钥</p>
+<ul>
+<li>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings\$USER;</li>
+<li>在主目录下找到 .ssh 文件夹，进去之看查看下有没有 id_rsa 和 id_rsa.pub 这两个文件分别对应私钥与公钥;</li>
+<li><p>生成密钥</p>
+<pre><code>$ git ssh-keygen -t rsa -C “username@example.com”
+</code></pre></li>
+<li><p>添加密钥到ssh</p>
+<pre><code>$ ssh-add id_rsa.pub
+</code></pre></li>
+<li>添加密钥到github</li>
+<li><p>测试密钥是否成功添加</p>
+<pre><code>$ ssh git@github.com
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h3><h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><ul>
+<li><p>Hexo的安装，可以理解为安装了一个hexo的独立程序，视自己需求，是否新建一个文件夹，建议新建;</p>
+<pre><code>$ npm install hexo-cli -g
+$ npm install hexo --save
+</code></pre></li>
+<li><p>查看是否成功安装</p>
+<pre><code>$ hexo -v
+</code></pre></li>
+</ul>
+<h4 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h4><ul>
+<li><p>如果hexo的安装是一个独立程序的话，hexo配置的过程就是安装一个完整网站的全部内容，所以此时是要新建一个空文件夹的。<br>理论上我觉得可以多次进行hexo的配置，每次的配置就是重新建一个blog，新建的文件夹就是blog的全部内容。</p>
+<pre><code>$ hexo init
+$ npm install
+</code></pre></li>
+</ul>
+<h4 id="试运行hexo"><a href="#试运行hexo" class="headerlink" title="试运行hexo"></a>试运行hexo</h4><pre><code>$ hexo clean
+$ hexo g
+$ hexo d
+$ hexo s       % 运行本地服务 http://localhost:4000
+</code></pre>]]></content>
     </entry>
     
     <entry>
@@ -699,57 +748,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Chapter 10th-2]]></title>
-      <url>https://lacant.github.io/2016/07/20/Chapter%2010-2/</url>
-      <content type="html"><![CDATA[<p>老朱第十章课后习题作业（二）</p>
-<a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>10-14</p>
-<blockquote>
-<p><strong>粘滞阻尼系数</strong> :假设运动体系的能量耗散是由阻尼力引起，阻尼力是与质体运动的速度成正比，而方向与速度方向相反，阻尼力与速度的比值就是粘滞阻尼系数，它是基于粘滞阻尼理论得出的；</p>
-<p><strong>阻尼比</strong> ：是粘滞阻尼系数c与临界阻尼系数比值，用<strong>ξ</strong>来表示，ξ=c/2mω；</p>
-<p><strong>临界阻尼系数</strong> ：阻尼比ξ=1时所对应的粘滞阻尼系数，记为 C<sub>cr</sub> =2mω；</p>
-<p><strong>振幅的对数递减率</strong> ：对于单自由度体系有阻尼的自由振动，每经过一个时间间隔T，相邻的两个振幅之间的比值是按几何级数递减的，对相邻振幅之间的比值取对数就是<strong>振幅的对数递减率</strong>；</p>
-</blockquote>
-<p>一般冲击荷载的作用时间很短，结构在很短的时间内即达到最大响应，此时阻尼引起的能量耗散作用不明显，在计算最大响应值的时候可以忽略。</p>
-</li>
-<li><p>10-17-18</p>
-<blockquote>
-<p><strong>动力系数</strong> ：体系受动力荷载作用时的<strong>最大动力效应</strong>与将动力荷载的幅值F作为静力荷载作用于体系时所引起的<strong>静位移</strong>的比值<strong>μ</strong>。</p>
-</blockquote>
-<p>对于简谐荷载作用下的单自由度受迫运力，动力系数μ的影响因素主要取决于激振力的频率θ与体系自振频率ω的比值，当θ/ω的比值趋向于0时，动力系数μ趋向于1，体系相当于是受到静力作用；当θ/ω的比值趋向于正无穷时，动力系数μ趋向于0，表示体系最大动位移为0，也就是体系基本上是静止的。</p>
-<ul>
-<li><strong>共振</strong>：当θ/ω的比值趋向于1时，动力系数μ趋向于无穷大，此时动位移将远大于静位移，这种现象叫做共振；在工程中为了避免发生共振现象，一般应控制θ/ω的比值避开0.75~1.25的共振区段。当θ/ω的比值处于<1的共振前区时，可以提高ω的值，叫做刚性方案；当θ ω的比值处于="">1的共振后区时，可以降低体系的ω值，称为柔性方案；</1的共振前区时，可以提高ω的值，叫做刚性方案；当θ></li>
-<li>对于有阻尼的受迫振动，动力系数μ还受到阻尼比ξ的影响，动力系数μ随阻尼比的增大而迅速减小，另外，此时动力系数μ的最大值并不是发生在θ/ω=1时，而是发生在θ/ω的值接近于1处，此时动力系数μ=1/2ξ；</li>
-<li>对于单自由度体系，当动力荷载作用在质量上时，体系各处的动位移及动内力均可看作是由质量位移引起的，因此具有相同的动力系数，否则会有不同的动力系数。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>10-25<br>结构自振频率的的个数取决于体系的动力自由度数，求解结构自振频率的问题在数学上是关于齐次线性代数方程组的求解为问题，齐次方程组有非零解的条件是其系数行列式必须等于零，也就是说，组成行列式的向量线性相关。</p>
-</li>
-<li><p>10-28<br>对于（10-66）式，所有的动力荷载都是自振周期相同的简谐荷载，当用柔度法时，作用位置任意；刚度法则要求所有的动力荷载的作用位置要位于质点上。<br>对于（10-71）式，是用刚度法建立体系的运动方程，对加载的荷载没有任意要求。</p>
-</li>
-<li><p>10-29<br>对于简谐荷载作用下的无阻尼受迫振动，体系动位移方程和惯性力与动荷载同时达到幅值，因此可以将惯性力幅值和干扰力幅值同时作用于体系上，按静力法计算体系的内力幅值。</p>
-</li>
-<li><p>10-35<br>利用振型分解法的基础是：</p>
-<ul>
-<li>主振型的正交性，利用功的互等性定理，可以证明多自由度体系自由振动时，某一主振型的惯性力不会在其他主振型上作功，某一主振型的弹性力不会在其它主振型上作功；</li>
-<li>基于线弹性体的叠加原理，将质量动位移分解为以正则坐标为权的各主振型的叠加，此方法不适用于求解非线性振动体系。</li>
-</ul>
-</li>
-<li><p>10-38  </p>
-<blockquote>
-<p><strong>基本频率</strong>： 在多自由度体系中，基本频率是指在频率谱上最小的频率，也称为第一频率或第一振型；</p>
-</blockquote>
-<p>从正则坐标的角度分析，较低频率相应的振型对体系动力响应的贡献远大于较高频率相应振型的贡献，并且在有阻尼存在时，高振型响应的衰减速度又要比低振型的响应迅速得多，因此只要考虑前几个振型对结构动力响应的贡献，就可以满足实际工程的精度要求。</p>
-<p>所假设的位移函数必须满足位移边界条件，并应尽可能接近于振型的实际情况，因为假设位移函数相当于对体系的变形增加了约束，从而使刚度增大，所以求得的自振频率一般是高于精确值的。</p>
-</li>
-</ul>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Chapter 10th-1]]></title>
       <url>https://lacant.github.io/2016/07/20/Chapter%2010-1/</url>
       <content type="html"><![CDATA[<p>老朱第十章课后习题作业（一）</p>
@@ -805,6 +803,57 @@
 <li><strong>e<sup>-ξωt<sub>k</sub></sup></strong> 是相邻两个振幅 <strong>y<sub>k</sub></strong>和 <strong>y<sub>k+1</sub></strong> 的比值，公比是按几何级数规律递减的。只要求得相邻振幅之间的比值，就可以用对数函数取得阻尼比ξ的值。</li>
 </ul>
 <p>振动周期与无阻尼时相比，取决于阻尼比ξ的大小，对于一般建筑结构，可以近似认为是相同的。</p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Chapter 10th-2]]></title>
+      <url>https://lacant.github.io/2016/07/20/Chapter%2010-2/</url>
+      <content type="html"><![CDATA[<p>老朱第十章课后习题作业（二）</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>10-14</p>
+<blockquote>
+<p><strong>粘滞阻尼系数</strong> :假设运动体系的能量耗散是由阻尼力引起，阻尼力是与质体运动的速度成正比，而方向与速度方向相反，阻尼力与速度的比值就是粘滞阻尼系数，它是基于粘滞阻尼理论得出的；</p>
+<p><strong>阻尼比</strong> ：是粘滞阻尼系数c与临界阻尼系数比值，用<strong>ξ</strong>来表示，ξ=c/2mω；</p>
+<p><strong>临界阻尼系数</strong> ：阻尼比ξ=1时所对应的粘滞阻尼系数，记为 C<sub>cr</sub> =2mω；</p>
+<p><strong>振幅的对数递减率</strong> ：对于单自由度体系有阻尼的自由振动，每经过一个时间间隔T，相邻的两个振幅之间的比值是按几何级数递减的，对相邻振幅之间的比值取对数就是<strong>振幅的对数递减率</strong>；</p>
+</blockquote>
+<p>一般冲击荷载的作用时间很短，结构在很短的时间内即达到最大响应，此时阻尼引起的能量耗散作用不明显，在计算最大响应值的时候可以忽略。</p>
+</li>
+<li><p>10-17-18</p>
+<blockquote>
+<p><strong>动力系数</strong> ：体系受动力荷载作用时的<strong>最大动力效应</strong>与将动力荷载的幅值F作为静力荷载作用于体系时所引起的<strong>静位移</strong>的比值<strong>μ</strong>。</p>
+</blockquote>
+<p>对于简谐荷载作用下的单自由度受迫运力，动力系数μ的影响因素主要取决于激振力的频率θ与体系自振频率ω的比值，当θ/ω的比值趋向于0时，动力系数μ趋向于1，体系相当于是受到静力作用；当θ/ω的比值趋向于正无穷时，动力系数μ趋向于0，表示体系最大动位移为0，也就是体系基本上是静止的。</p>
+<ul>
+<li><strong>共振</strong>：当θ/ω的比值趋向于1时，动力系数μ趋向于无穷大，此时动位移将远大于静位移，这种现象叫做共振；在工程中为了避免发生共振现象，一般应控制θ/ω的比值避开0.75~1.25的共振区段。当θ/ω的比值处于<1的共振前区时，可以提高ω的值，叫做刚性方案；当θ ω的比值处于="">1的共振后区时，可以降低体系的ω值，称为柔性方案；</1的共振前区时，可以提高ω的值，叫做刚性方案；当θ></li>
+<li>对于有阻尼的受迫振动，动力系数μ还受到阻尼比ξ的影响，动力系数μ随阻尼比的增大而迅速减小，另外，此时动力系数μ的最大值并不是发生在θ/ω=1时，而是发生在θ/ω的值接近于1处，此时动力系数μ=1/2ξ；</li>
+<li>对于单自由度体系，当动力荷载作用在质量上时，体系各处的动位移及动内力均可看作是由质量位移引起的，因此具有相同的动力系数，否则会有不同的动力系数。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>10-25<br>结构自振频率的的个数取决于体系的动力自由度数，求解结构自振频率的问题在数学上是关于齐次线性代数方程组的求解为问题，齐次方程组有非零解的条件是其系数行列式必须等于零，也就是说，组成行列式的向量线性相关。</p>
+</li>
+<li><p>10-28<br>对于（10-66）式，所有的动力荷载都是自振周期相同的简谐荷载，当用柔度法时，作用位置任意；刚度法则要求所有的动力荷载的作用位置要位于质点上。<br>对于（10-71）式，是用刚度法建立体系的运动方程，对加载的荷载没有任意要求。</p>
+</li>
+<li><p>10-29<br>对于简谐荷载作用下的无阻尼受迫振动，体系动位移方程和惯性力与动荷载同时达到幅值，因此可以将惯性力幅值和干扰力幅值同时作用于体系上，按静力法计算体系的内力幅值。</p>
+</li>
+<li><p>10-35<br>利用振型分解法的基础是：</p>
+<ul>
+<li>主振型的正交性，利用功的互等性定理，可以证明多自由度体系自由振动时，某一主振型的惯性力不会在其他主振型上作功，某一主振型的弹性力不会在其它主振型上作功；</li>
+<li>基于线弹性体的叠加原理，将质量动位移分解为以正则坐标为权的各主振型的叠加，此方法不适用于求解非线性振动体系。</li>
+</ul>
+</li>
+<li><p>10-38  </p>
+<blockquote>
+<p><strong>基本频率</strong>： 在多自由度体系中，基本频率是指在频率谱上最小的频率，也称为第一频率或第一振型；</p>
+</blockquote>
+<p>从正则坐标的角度分析，较低频率相应的振型对体系动力响应的贡献远大于较高频率相应振型的贡献，并且在有阻尼存在时，高振型响应的衰减速度又要比低振型的响应迅速得多，因此只要考虑前几个振型对结构动力响应的贡献，就可以满足实际工程的精度要求。</p>
+<p>所假设的位移函数必须满足位移边界条件，并应尽可能接近于振型的实际情况，因为假设位移函数相当于对体系的变形增加了约束，从而使刚度增大，所以求得的自振频率一般是高于精确值的。</p>
 </li>
 </ul>
 ]]></content>
