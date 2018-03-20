@@ -4,6 +4,17 @@
   
     
     <entry>
+      <title><![CDATA[Test new hexo]]></title>
+      <url>https://lacant.github.io/2018/03/20/test_rebuilt_hexo/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
+<ul>
+<li>rebuilt hexo on March 20th 2018</li>
+<li>markdown with notepadd++</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title></title>
       <url>https://lacant.github.io/2018/03/20/openwrt-ss%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/</url>
       <content type="html"><![CDATA[<ul>
