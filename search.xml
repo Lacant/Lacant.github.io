@@ -460,37 +460,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[极限小结]]></title>
-      <url>https://lacant.github.io/2016/07/27/Lim/</url>
-      <content type="html"><![CDATA[<p>极限复习小结</p>
-<a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
-<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
-<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
-<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
-<li>Taylor公式的应用的注意事项：  <ul>
-<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
-<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
-<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
-</ul>
-</li>
-<li>数列极限的计算：  <ul>
-<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
-<li>夹逼准则；</li>
-<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
-</ul>
-</li>
-<li>函数的连续性：  <ul>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[常用数学符号]]></title>
       <url>https://lacant.github.io/2016/07/27/MATH%20CODE/</url>
       <content type="html"><![CDATA[<p>常用数学符号</p>
@@ -692,6 +661,37 @@
 <li>ln(1+x) =x - x<sup>2</sup>/2 + x<sup>3</sup>/3 +o(x<sup>3</sup>)  </li>
 <li>e<sup>x</sup> =1 + x + x<sup>2</sup>/2 + x<sup>3</sup>/6 +o(x<sup>3</sup>)  </li>
 <li>(1+x)<sup>a</sup> =1 + ax + a(a-1)x<sup>2</sup>/2 +o(x<sup>2</sup>)</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[极限小结]]></title>
+      <url>https://lacant.github.io/2016/07/27/Lim/</url>
+      <content type="html"><![CDATA[<p>极限复习小结</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
+<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
+<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
+<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
+<li>Taylor公式的应用的注意事项：  <ul>
+<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
+<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
+<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
+</ul>
+</li>
+<li>数列极限的计算：  <ul>
+<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
+<li>夹逼准则；</li>
+<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
+</ul>
+</li>
+<li>函数的连续性：  <ul>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
 </ul>
 </li>
 </ul>
