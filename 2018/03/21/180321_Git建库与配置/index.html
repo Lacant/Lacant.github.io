@@ -85,12 +85,14 @@
 
 
 <meta name="description" content="Git建库与配置基本流程">
+<meta name="keywords" content="git,小白">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git建库与配置">
 <meta property="og:url" content="https://lacant.github.io/2018/03/21/180321_Git建库与配置/index.html">
 <meta property="og:site_name" content="婷婷的House">
 <meta property="og:description" content="Git建库与配置基本流程">
-<meta property="og:updated_time" content="2018-03-21T04:36:55.701Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-21T08:22:25.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git建库与配置">
 <meta name="twitter:description" content="Git建库与配置基本流程">
@@ -349,34 +351,34 @@
       
         <p>Git建库与配置基本流程<br><a id="more"></a></p>
 <h2 id="Git初始化配置"><a href="#Git初始化配置" class="headerlink" title="Git初始化配置"></a>Git初始化配置</h2><ul>
-<li>创建本地库<pre><code>$ mkdir ~/file_name  %在根目录创建一个叫 file_name 的文件夹（库）
-$ cd ~/file_name     %进入 file_name 文件夹
-$ git init           %初始化 file_name 这个库
+<li>创建本地库<pre><code>  $ mkdir ~/file_name  %在根目录创建一个叫 file_name 的文件夹（库）
+  $ cd ~/file_name     %进入 file_name 文件夹
+  $ git init           %初始化 file_name 这个库
 </code></pre></li>
-<li>将本地库与 github 连接,在此之前，要确认公钥有没有添加到 github 上去，否则会失败<pre><code>$ ssh -T git@github.com
-$ git remote add origin git@github.com:username/XXXXX.git
+<li>将本地库与 github 连接,在此之前，要确认公钥有没有添加到 github 上去，否则会失败<pre><code>  $ ssh -T git@github.com
+  $ git remote add origin git@github.com:username/XXXXX.git
 </code></pre></li>
-<li>新建任意一个测试文档 readme.txt 入file_name文件夹里<pre><code>$ git add readme.txt            %将 readme.txt 放入暂存区（stage or index)
-$ git commit -m &quot;注释”          %将 readme.txt 提交到 master 分支
-$ git push -u origin master     %将本地项目更新到 github 上去
+<li>新建任意一个测试文档 readme.txt 入file_name文件夹里<pre><code>  $ git add readme.txt            %将 readme.txt 放入暂存区（stage or index)
+  $ git commit -m &quot;注释”          %将 readme.txt 提交到 master 分支
+  $ git push -u origin master     %将本地项目更新到 github 上去
 </code></pre></li>
-<li>其它指令<pre><code>$ git branch -a                 %查看所有分支
-$ git push origin --delete HEAD %删除HEAD分支
-$ git rm file_name -r -f        %删除 file_name 下所有文件
-$ git branch dev                %创建 dev 分支
-$ git checkout dev              %切换到 dev 分支
-$ git add .                     %添加所有文件到 index
-$ git commit -m &quot;all&quot;
+<li>其它指令<pre><code>  $ git branch -a                 %查看所有分支
+  $ git push origin --delete HEAD %删除HEAD分支
+  $ git rm file_name -r -f        %删除 file_name 下所有文件
+  $ git branch dev                %创建 dev 分支
+  $ git checkout dev              %切换到 dev 分支
+  $ git add .                     %添加所有文件到 index
+  $ git commit -m &quot;all&quot;
 </code></pre><h2 id="BugFree"><a href="#BugFree" class="headerlink" title="BugFree"></a>BugFree</h2></li>
 <li>Bug1<blockquote>
 <p>ssh: connect to host github.com port 22: Connection timed out</p>
 <ul>
-<li>Solution : 到git的安装目录，找到/etc/ssh/ssh_config文件,加上下面这段：<pre><code>$ Host github.com
-$ User git
-$ Hostname ssh.github.com
-$ PreferredAuthentications publickey
-$ IdentityFile ~/.ssh/id_rsa
-$ Port 443
+<li>Solution : 到git的安装目录，找到/etc/ssh/ssh_config文件,加上下面这段：<pre><code>  $ Host github.com
+  $ User git
+  $ Hostname ssh.github.com
+  $ PreferredAuthentications publickey
+  $ IdentityFile ~/.ssh/id_rsa
+  $ Port 443
 </code></pre></li>
 </ul>
 </blockquote>
@@ -422,6 +424,10 @@ $ Port 443
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/21/180321_MathJax代码/" rel="prev" title="Hexo中数学公式的表达">
+                Hexo中数学公式的表达 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -512,7 +518,7 @@ $ Port 443
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -529,7 +535,7 @@ $ Port 443
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

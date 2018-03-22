@@ -4,44 +4,200 @@
   
     
     <entry>
+      <title><![CDATA[Review:Linear Regression VS Logical Regression]]></title>
+      <url>https://lacant.github.io/2018/03/22/180322_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>吴坦恩机器学习课程小结</p>
+<a id="more"></a>
+<h2 id="第六课"><a href="#第六课" class="headerlink" title="第六课"></a>第六课</h2><ul>
+<li>线性回归与逻辑回归相关函数对比：</li>
+</ul>
+<style>
+table th:first-of-type {
+    width: 130px;
+}
+</style>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:left">Linear Regression</th>
+<th style="text-align:left">Logical Regression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hypothesis function</td>
+<td style="text-align:left">$h_\theta(x) = \theta_0+ \sum_{i=1}^n \theta_ix_i$</td>
+<td style="text-align:left">/</td>
+</tr>
+<tr>
+<td>矩阵型式</td>
+<td style="text-align:left">$h_\theta(x) = \theta^Tx$</td>
+<td style="text-align:left">$h_\theta(x) = \frac{1}{1+ e^-\theta^T x}$</td>
+</tr>
+<tr>
+<td>Cost function</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^i) - y^i)^2$</td>
+<td style="text-align:left">$J(\theta)= -\frac{1}{m} [\sum_{i=1}^m y^ilogh_\theta(x^i)+ (1-y^i)log(1-h_\theta(x^i))]$</td>
+</tr>
+<tr>
+<td>Gradient descent</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
+<td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>在逻辑回归中，Hypothesis function的值代表着y=1的概率: $h_\theta(x) = P(y=1|x;\theta)$</p>
+</li>
+<li><p>Octave求逻辑回归，梯度下降代码：</p>
+<ul>
+<li><p>定义costFunction</p>
+<pre><code>  $ function [jVal, gradient] = costFunction(theta)
+  $ jVal = (theta(1)-5)^2 + (theta(2)-5_^2;
+  $ gradient = zeros (2,1);
+  $ gradient(1) = 2* (theta(1)-5);
+  $ gradient(2) = 2*（theta(2)-5);
+</code></pre></li>
+<li><p>调用fminunc函数进行梯度迭代计算：        </p>
+<pre><code>  $ options = optimset(&#39;GradObj&#39;, &#39;on&#39;, &#39;MaxIter&#39;, &#39;100&#39;)
+  $ initialTheta = zeros(2,1);
+  $ [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+  $ options = optimset(&#39;GradObj&#39;, &#39;on&#39;, &#39;MaxIter&#39;, &#39;100&#39;);
+  $ initialTheta = zeros(2,1);
+  $ [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+</code></pre></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 高数 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo中数学公式的表达]]></title>
+      <url>https://lacant.github.io/2018/03/21/180321_MathJax%E4%BB%A3%E7%A0%81/</url>
+      <content type="html"><![CDATA[<p>MathJax 在Hexo中的渲染问题</p>
+<a id="more"></a>
+<h2 id="BugFree"><a href="#BugFree" class="headerlink" title="BugFree"></a>BugFree</h2><ul>
+<li>hexo默认使用 hexo-renderer-marked 引擎去渲染网页，它会把利用Markdown语法写的文本去转换为相应的html标签。在利用Markdown写MathJax公式的时候，经常会用到下划线 <em>“__”</em> 表示下标，但是下划线 <em>“__”</em> 会被hexo的默认引擎 hexo-renderer-marked 渲染成html中的<strong>“&lt;em&gt;”</strong>标签，表示斜体，这样一来，我们写的MathJax公式就被错误渲染了，也就没办法正确显示出来。</li>
+<li>解决方方案：替换渲染引擎（如果出错，尝试将npm升至最新版本）<pre><code>  $ npm uninstall hexo-renderer-marked --save
+  $ npm install hexo-renderer-kramed --save
+</code></pre></li>
+<li><p>定位到你的博客根目录，找到../node_modules/kramed/lib/rules/inline.js文件，作如下修改：</p>
+<pre><code>  $ //escape: /^\\([\\`*{}\[\]()#$+\-.!_&gt;])/,                           第11行，将其修改为
+  $   escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,
+  $ //em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,    第20行，将其修改为
+  $   em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+</code></pre><h2 id="代码实现案例"><a href="#代码实现案例" class="headerlink" title="代码实现案例"></a>代码实现案例</h2></li>
+<li><p>sigmoid function：$g(z)=\frac{1}{e+e^{-z}}$</p>
+<pre><code>  $ g(z)=\frac{1}{e+e^{-z}}
+</code></pre></li>
+<li>sum function: $\sum_{i=1}^n a_i=0$ ($ 表示行内公式)<pre><code>  $ \sum_{i=1}^n a_i=0
+</code></pre></li>
+<li>sum function: <script type="math/tex">\sum_{i=1}^n a_i=0</script> ($$ 表示整行公式)<pre><code>  $ \sum_{i=1}^n a_i=0
+</code></pre></li>
+<li>多元函数：$f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2$<pre><code>  $ f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2
+</code></pre></li>
+</ul>
+<script type="math/tex; mode=display">\frac{\partial u}{\partial t}= h^2 \left( \frac{\partial^2 u}{\partial x^2} +\frac{\partial^2 u}{\partial y^2} +\frac{\partial^2 u}{\partial z^2}\right)</script><ul>
+<li>微分:<script type="math/tex">\frac{\mathrm d}{\mathrm d x} \left( k g(x) \right)</script></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数学公式，机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Git建库与配置]]></title>
       <url>https://lacant.github.io/2018/03/21/180321_Git%E5%BB%BA%E5%BA%93%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p>Git建库与配置基本流程<br><a id="more"></a></p>
 <h2 id="Git初始化配置"><a href="#Git初始化配置" class="headerlink" title="Git初始化配置"></a>Git初始化配置</h2><ul>
-<li>创建本地库<pre><code>$ mkdir ~/file_name  %在根目录创建一个叫 file_name 的文件夹（库）
-$ cd ~/file_name     %进入 file_name 文件夹
-$ git init           %初始化 file_name 这个库
+<li>创建本地库<pre><code>  $ mkdir ~/file_name  %在根目录创建一个叫 file_name 的文件夹（库）
+  $ cd ~/file_name     %进入 file_name 文件夹
+  $ git init           %初始化 file_name 这个库
 </code></pre></li>
-<li>将本地库与 github 连接,在此之前，要确认公钥有没有添加到 github 上去，否则会失败<pre><code>$ ssh -T git@github.com
-$ git remote add origin git@github.com:username/XXXXX.git
+<li>将本地库与 github 连接,在此之前，要确认公钥有没有添加到 github 上去，否则会失败<pre><code>  $ ssh -T git@github.com
+  $ git remote add origin git@github.com:username/XXXXX.git
 </code></pre></li>
-<li>新建任意一个测试文档 readme.txt 入file_name文件夹里<pre><code>$ git add readme.txt            %将 readme.txt 放入暂存区（stage or index)
-$ git commit -m &quot;注释”          %将 readme.txt 提交到 master 分支
-$ git push -u origin master     %将本地项目更新到 github 上去
+<li>新建任意一个测试文档 readme.txt 入file_name文件夹里<pre><code>  $ git add readme.txt            %将 readme.txt 放入暂存区（stage or index)
+  $ git commit -m &quot;注释”          %将 readme.txt 提交到 master 分支
+  $ git push -u origin master     %将本地项目更新到 github 上去
 </code></pre></li>
-<li>其它指令<pre><code>$ git branch -a                 %查看所有分支
-$ git push origin --delete HEAD %删除HEAD分支
-$ git rm file_name -r -f        %删除 file_name 下所有文件
-$ git branch dev                %创建 dev 分支
-$ git checkout dev              %切换到 dev 分支
-$ git add .                     %添加所有文件到 index
-$ git commit -m &quot;all&quot;
+<li>其它指令<pre><code>  $ git branch -a                 %查看所有分支
+  $ git push origin --delete HEAD %删除HEAD分支
+  $ git rm file_name -r -f        %删除 file_name 下所有文件
+  $ git branch dev                %创建 dev 分支
+  $ git checkout dev              %切换到 dev 分支
+  $ git add .                     %添加所有文件到 index
+  $ git commit -m &quot;all&quot;
 </code></pre><h2 id="BugFree"><a href="#BugFree" class="headerlink" title="BugFree"></a>BugFree</h2></li>
 <li>Bug1<blockquote>
 <p>ssh: connect to host github.com port 22: Connection timed out</p>
 <ul>
-<li>Solution : 到git的安装目录，找到/etc/ssh/ssh_config文件,加上下面这段：<pre><code>$ Host github.com
-$ User git
-$ Hostname ssh.github.com
-$ PreferredAuthentications publickey
-$ IdentityFile ~/.ssh/id_rsa
-$ Port 443
+<li>Solution : 到git的安装目录，找到/etc/ssh/ssh_config文件,加上下面这段：<pre><code>  $ Host github.com
+  $ User git
+  $ Hostname ssh.github.com
+  $ PreferredAuthentications publickey
+  $ IdentityFile ~/.ssh/id_rsa
+  $ Port 443
 </code></pre></li>
 </ul>
 </blockquote>
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> 小白 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -66,6 +222,22 @@ $ Port 443
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> fq </tag>
+            
+            <tag> 路由 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -81,44 +253,44 @@ $ Port 443
 $ npm -v
 </code></pre><h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><h4 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h4><ul>
 <li><p>这里的“username”是可以任意填写的</p>
-<pre><code>$ git config --global user.name &quot;username&quot;
-$ git config --global user.email &quot;johndoe@example.com&quot;
+<pre><code>  $ git config --global user.name &quot;username&quot;
+  $ git config --global user.email &quot;johndoe@example.com&quot;
 </code></pre></li>
 <li><p>查看配置信息</p>
-<pre><code>$ git config --list
+<pre><code>  $ git config --list
 </code></pre></li>
 </ul>
 <h4 id="密钥配置"><a href="#密钥配置" class="headerlink" title="密钥配置"></a>密钥配置</h4><ul>
 <li><p>查看是否已经有了密钥</p>
 <ul>
-<li>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings\$USER;</li>
+<li>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER;</li>
 <li>在主目录下找到 .ssh 文件夹，进去之看查看下有没有 id_rsa 和 id_rsa.pub 这两个文件分别对应私钥与公钥;</li>
 <li><p>生成密钥</p>
-<pre><code>$ git ssh-keygen -t rsa -C “username@example.com”
+<pre><code>  $ git ssh-keygen -t rsa -C “username@example.com”
 </code></pre></li>
 <li><p>添加密钥到ssh</p>
-<pre><code>$ ssh-add id_rsa.pub
+<pre><code>  $ ssh-add id_rsa.pub
 </code></pre></li>
 <li>添加密钥到github</li>
 <li><p>测试密钥是否成功添加</p>
-<pre><code>$ ssh git@github.com
+<pre><code>  $ ssh git@github.com
 </code></pre></li>
 </ul>
 </li>
 </ul>
 <h3 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h3><h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><ul>
 <li><p>Hexo的安装，可以理解为安装了一个hexo的独立程序，视自己需求，是否新建一个文件夹，建议新建;</p>
-<pre><code>$ npm install hexo-cli -g
-$ npm install hexo --save
+<pre><code>  $ npm install hexo-cli -g
+  $ npm install hexo --save
 </code></pre></li>
 <li><p>查看是否成功安装</p>
-<pre><code>$ hexo -v
+<pre><code>  $ hexo -v
 </code></pre></li>
 </ul>
 <h4 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h4><ul>
 <li><p>如果hexo的安装是一个独立程序的话，hexo配置的过程就是安装一个完整网站的全部内容，所以此时是要新建一个空文件夹的。<br>理论上我觉得可以多次进行hexo的配置，每次的配置就是重新建一个blog，新建的文件夹就是blog的全部内容。</p>
-<pre><code>$ hexo init
-$ npm install
+<pre><code>  $ hexo init
+  $ npm install
 </code></pre></li>
 </ul>
 <h4 id="试运行hexo"><a href="#试运行hexo" class="headerlink" title="试运行hexo"></a>试运行hexo</h4><pre><code>$ hexo clean
@@ -126,21 +298,39 @@ $ hexo g
 $ hexo d
 $ hexo s       % 运行本地服务 http://localhost:4000
 </code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 小白 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Hello World]]></title>
       <url>https://lacant.github.io/2018/03/20/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -173,6 +363,22 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <li>正态分布</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 概念 </tag>
+            
+            <tag> 概率论与数理统计 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -187,6 +393,20 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <li>人只要无法去除动物性，就永远不可能摆脱物质的奴役，最好的办法是直面自已的需求，并用理性与之博弈。落实到现实生活中，就是不但要考虑“想不想要的问题”，还需考虑“能不能够”的问题，并且这个“能不能够”还必须不能损人利已，也就是说要在满足社会运行准则的条件下去实现自已需求，所谓的“被物质奴役”，也就是人的社会性的不足，这也是我们当下的高等教育最缺失的一部分了。</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Structural Mechanics </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Materials_Science </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -196,7 +416,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <a id="more"></a>
 <h2 id="英文的重要性"><a href="#英文的重要性" class="headerlink" title="英文的重要性"></a>英文的重要性</h2><ul>
 <li>这次对于概念的再学习是因为要准备研究生考试，首先国内对于这两个概念的解释我认为对于学生的理解是完全无意义的。<strong>静矩</strong>在数学上属于二重积分中的内容，用于求解不规则平面图形<strong>形心</strong>坐标的一个方程式，实际并无任何物理意义。（这里的物理意义指的是必须是可以通过人的感官直接或间接感知的一种现象）单单就是一<strong>矩</strong>字，就总能给人带来无限的“遐想”，比如<strong>弯矩</strong>，虽然无法直接感知，但至少能通过弯曲变形的状态来进行间接理解，<strong>静矩</strong>这东西有间接对应的相关物理现象么？  </li>
-<li>事实上这两个工程领域的概念其实是一个数学表达式，而非一个有实际意义的物理量，或者说是可以被间接感知的物理量，<strong>惯性矩</strong> <a href="https://en.wikipedia.org/wiki/Second_moment_of_area" target="_blank" rel="external">The second moment of area</a> 和 <strong>静矩</strong> <a href="https://en.wikipedia.org/wiki/Moment_of_inertia" target="_blank" rel="external">Moment of inertia</a> 这两个概念在维基百科上有多个不同的词条，这是同一个积分表达式在不同的领域应用的结果，如果要正确理解这两个概念，只能从高等数学切入，否则只能引起概念的混淆。</li>
+<li>事实上这两个工程领域的概念其实是一个数学表达式，而非一个有实际意义的物理量，或者说是可以被间接感知的物理量，<strong>惯性矩</strong> <a href="https://en.wikipedia.org/wiki/Second_moment_of_area" target="_blank" rel="noopener">The second moment of area</a> 和 <strong>静矩</strong> <a href="https://en.wikipedia.org/wiki/Moment_of_inertia" target="_blank" rel="noopener">Moment of inertia</a> 这两个概念在维基百科上有多个不同的词条，这是同一个积分表达式在不同的领域应用的结果，如果要正确理解这两个概念，只能从高等数学切入，否则只能引起概念的混淆。</li>
 <li>这两个概念的阐述必然是要引入部分高等数学的基础知识，首先需要先了解极限的概念，极限用最通俗的语言来表述就是“无限接近”，非专业的朋友们知道这么个意思就可以了，定积分的使用也是极限概念的拓展，所以定积分求得的结果必然不是精确的，但因为是“无限接近”，所以误差是很小的。另外一点就是，工程上使用的材料大多是几何规则的形状，所以工程类的教材里把这两个概念的数学表式是用定积分来呈现的，但在数学上，这部分是二重积分的领域，这两者是有根本性区别的，哎，说多了都是痛，要不工科被人看不上呢。</li>
 </ul>
 <h2 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h2><blockquote>
@@ -211,7 +431,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <ul>
 <li><p>有了上面的介绍，这个数学表达式就好理解了，  </p>
 <ul>
-<li>∫ : 这个叫积分符号，它是拉丁语summa的简写，是求和的意思，这个符号是由伟大的数学家<a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz" target="_blank" rel="external">Leibniz</a>发明的，Leibniz是<a href="https://en.wikipedia.org/wiki/Johann_Bernoulli" target="_blank" rel="external">Bernoulli</a>的老师，Bernoulli是<a href="https://en.wikipedia.org/wiki/Leonhard_Euler" target="_blank" rel="external">Euler</a>的老师，Euler是<a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="external">Lagrange</a>的老师，Lagrange是<a href="https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy" target="_blank" rel="external">Cauchy</a>的老师，Cauchy是<a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="external">Gauss</a>的老师，Gauss是<a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="external">Dirichlet</a>的老师，Dirichlet是<a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="external">Riemann</a>的老师，然后，定积分的精确定义是由Riemann给出的，就这样。</li>
+<li>∫ : 这个叫积分符号，它是拉丁语summa的简写，是求和的意思，这个符号是由伟大的数学家<a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz" target="_blank" rel="noopener">Leibniz</a>发明的，Leibniz是<a href="https://en.wikipedia.org/wiki/Johann_Bernoulli" target="_blank" rel="noopener">Bernoulli</a>的老师，Bernoulli是<a href="https://en.wikipedia.org/wiki/Leonhard_Euler" target="_blank" rel="noopener">Euler</a>的老师，Euler是<a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="noopener">Lagrange</a>的老师，Lagrange是<a href="https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy" target="_blank" rel="noopener">Cauchy</a>的老师，Cauchy是<a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="noopener">Gauss</a>的老师，Gauss是<a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="noopener">Dirichlet</a>的老师，Dirichlet是<a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="noopener">Riemann</a>的老师，然后，定积分的精确定义是由Riemann给出的，就这样。</li>
 <li>a-b：代表了那片被压扁的吐司的宽度；</li>
 <li>f(x): 是每一小份吐司的长度；</li>
 <li>dx: 是每一份吐司的宽度；</li>
@@ -228,7 +448,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </ul>
 <h2 id="弯曲变形"><a href="#弯曲变形" class="headerlink" title="弯曲变形"></a>弯曲变形</h2><ul>
 <li>在进一步阐述那两个概念前，读者们需要了解工程上“弯曲变形”和“胡克定律”的概念，因为<strong>静矩</strong>和<strong>惯性矩</strong>可以用来衡量材料能否被压变形和压断的一个指标。<h4 id="梁的纯弯曲变形"><a href="#梁的纯弯曲变形" class="headerlink" title="梁的纯弯曲变形"></a>梁的纯弯曲变形</h4></li>
-<li>梁(<a href="https://en.wikipedia.org/wiki/Beam_(structure" target="_blank" rel="external">Beam</a>)：在工程上主要发生弯曲变形的构件；<br>求如下图所示：<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg" alt="定积分定义" title="定积分的定义" width="250" height="200"></li>
+<li>梁(<a href="https://en.wikipedia.org/wiki/Beam_(structure" target="_blank" rel="noopener">Beam</a>)：在工程上主要发生弯曲变形的构件；<br>求如下图所示：<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg" alt="定积分定义" title="定积分的定义" width="250" height="200"></li>
 </ul>
 <p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/44785887.jpg" alt="形心坐标公式"></p>
 <p>这是平面图形的形心的横坐标(X轴)的积分公式，看出来了么？这个公式的分子部分就教科书上说的<strong>静矩</strong>了，分母部分是平面图形的面积。这个公式展开来用通俗语言表述就是：我用一把刀把一个平面图形切割成n条，n是多大呢？大到每一条的形状都像是一个矩形的样子，那么每一条矩形的面积就是f(x)dx,再把每一条矩形的面积都X上它到Y轴的矩离，最后把所有的结果相加，这是便是<strong>静矩</strong>的几何意义。  </p>
@@ -247,16 +467,31 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <li>由材料力学的知识，我们知道中性层是用于区分梁的横截面上受拉与受压界面的分界线，那么横截面上的弯矩也就可以由单位面积的轴力对中性轴求矩得到。由<strong>③</strong>式可求得微面积上的轴力，所以微面积上的弯矩可以这么表示：<strong>④ M<sub>x</sub>=yσ•dxdy</strong>,对这个公式积分，就是要求得的弯矩表达示了：<strong>M=∫yσ•dxdy=∫yσ•dA=E/ρ•∫y<sup>2</sup>dA</strong>,积分部分便是所谓的<strong>惯性矩</strong>了。  </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Structural Mechanics </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Materials_Science </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[AR BOOK FINDER]]></title>
       <url>https://lacant.github.io/2016/08/10/AR%20book%20finder/</url>
-      <content type="html"><![CDATA[<p>英文网站<a href="http://www.arbookfind.com" target="_blank" rel="external">AR BookFinder</a>的简要使用说明。AR的全称是Accelerated Reader,意指不断成长的阅读者，这是一个旨在为各类人群提供阅读指导的智能系统。</p>
+      <content type="html"><![CDATA[<p>英文网站<a href="http://www.arbookfind.com" target="_blank" rel="noopener">AR BookFinder</a>的简要使用说明。AR的全称是Accelerated Reader,意指不断成长的阅读者，这是一个旨在为各类人群提供阅读指导的智能系统。</p>
 <a id="more"></a>
 <h2 id="Key-Words"><a href="#Key-Words" class="headerlink" title="Key Words"></a>Key Words</h2><ul>
 <li><strong>IL</strong>: Interest Level(兴趣指数，就是基于书的幼稚度，人物，情节给出的建议阅读年龄来分类)   </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -293,9 +528,11 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li><strong>BL</strong>: Book Level<br><strong>CCR</strong>:College and Career Readiness</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -342,9 +579,11 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li><strong>AR Quiz Types</strong>: AR 测验类型</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -371,6 +610,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li><strong>AR Pts</strong>: Accelerated Reader Points（ measure the amount of reading practice a student is getting. range from 0.5 to 118 ）指本书在学生的阅读训练中使用的次数。</li>
 </ul>
@@ -384,6 +624,22 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <li>Rating: 受欢迎程度3星</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学习学习再学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 英文学习 </tag>
+            
+            <tag> 原版阅读 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -450,16 +706,30 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </ul>
 </li>
 <li><strong>导数介值定理</strong>:f(x)在[a,b]内可导，若f’<sub>+</sub>(a)≠f’<sub>-</sub>(b)，∀μ介于f’<sub>+</sub>(a)与f’<sub>-</sub>(b)之间，则∃ξ∈(a,b)，使得f’(ξ)=μ。<ul>
-<li><strong>证明</strong>：由已知f’<sub>+</sub>(a)≠f’<sub>-</sub>(b)，假设f’<sub>+</sub>(a)＞f’<sub>-</sub>(b)，构造函数F(x)=f(x)-μx,其中f’<sub>+</sub>(a)＜μ＜f’<sub>-</sub>(b)，<br>因为f(x)在[a,b]内可导，则F’(x)=f’(x)-μ，所以F’<sub>+</sub>(a)＜0,F’<sub>-</sub>(b)＞0，  <ul>
+<li><strong>证明</strong>：由已知f’<sub>+</sub>(a)≠f’<sub>-</sub>(b)，假设f’<sub>+</sub>(a)＞f’<sub>-</sub>(b)，构造函数F(x)=f(x)-μx,其中f’<sub>+</sub>(a)＜μ＜f’<sub>-</sub>(b)，<br>因为f(x)在[a,b]内可导，则F’(x)=f’(x)-μ，所以F’<sub>+&lt;/sub&gt;(a)＜0,F’<sub>-</sub>(b)＞0，  <ul>
 <li>由<strong>导数定义</strong>可得，当x→a<sup>+</sup>时，F’<sub>+</sub>(a)=lim [F(x)-F(a)]/(x-a)&lt;0，<br>由<strong>局部保号性</strong>可得，F(x)＜F(a);同理可得，F(x)＜F(b)，所以F(a)和F(b)不是F(x)在[a,b]上的最小值，  </li>
 <li>由<strong>有界与最值定理</strong>可得，F(x)在[a,b]上必能取得一个最小值，这个最小值必定是在(a,b)上，所以这个最小值也是一个极值点。  </li>
 <li>根据<strong>费马定理</strong>可得，∃ξ∈(a,b)，使得F’(ξ)=f’(ξ)-μ=0，所以f’(ξ)=μ。证毕。</li>
 </ul>
-</li>
+</sub></li>
 </ul>
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 高数基本概念 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -467,8 +737,128 @@ $ hexo s       % 运行本地服务 http://localhost:4000
       <url>https://lacant.github.io/2016/08/03/%E5%AE%9A%E7%90%86%E8%A1%A8%E6%A0%BC/</url>
       <content type="html"><![CDATA[<p>在高等数学上册中涉及的12个重要定理，其中关于f(x)的4个，涉及f`(x)的有8个</p>
 <a id="more"></a>
-<table><br>   <tr><br>      <th width="15%">定理名称</th><br>      <th width="10.5%">[a,b]连续</th><br>      <th width="10.5%">(a,b)可导</th><br>      <th width="10.5%">∃ξ∈[a,b]</th><br>      <th width="10.5%">∃ξ∈(a,b)</th><br>      <th width="43%">定理内容</th><br>   </tr><br>   <tr><br>      <td>有界定理</td><br>      <td>√</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <th width="43%">则∃M&gt;0,使 -M≤f(x)≤M;</th><br><br>   </tr><br>   <tr><br>      <td>最值定理</td><br>      <td>√</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <th width="43%">则 m≤f(x)≤M，其中m,M分别为f(x)在[a,b]上的最小值和最大值</th><br>   </tr><br>   <tr><br>      <td>介值定理</td><br>      <td>√</td><br>      <td>X</td><br>      <td>√</td><br>      <td>X</td><br>      <th width="43%">当 m≤μ≤M，∃ ξ ∈[a,b],使得f(ξ)=μ，其中m,M分别为f(x)在[a,b]上的最小值和最大值</th><br>   </tr><br>   <tr><br>      <td>零点定理</td><br>      <td>√</td><br>      <td>X</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">若 f(a)•f(b)＜0,则∃ ξ∈(a,b),使得f(ξ)=0<br>      </th><br>   </tr><br>   <tr><br>      <td>费马定理</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <th width="43%">若f(x)在x<sub>0</sub>处<strong>可导</strong>，且<strong>取得极值</strong>，则f’(x<sub>0</sub>)=0<br>      </th><br>   </tr><br>   <tr><br>      <td>罗尔定理</td><br>      <td>√</td><br>      <td>√</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">若f(a)=f(b),则∃ ξ ∈(a,b),使得f’(ξ)=0<br>      </th><br>   </tr><br>   <tr><br>      <td>拉氏定理</td><br>      <td>√</td><br>      <td>√</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">则∃ ξ ∈(a,b),使得f(b)-f(a)=f’(ξ)(b-a)<br>   </th></tr><br>   <tr><br>      <td>柯西中值定理</td><br>      <td>√</td><br>      <td>√</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">若g’(x)≠0,则∃ ξ ∈(a,b),使得[f(b)-f(a)]/[g(b)-g(a)]=f’(ξ)/g’ξ)</th></tr><br>   <br>   <tr><br>      <td>Taylor公式</td><br>      <th colspan="5">f(x)=f(x<sub>0</sub>)+f’(x<sub>0</sub>)(x-x<sub>0</sub>)+f’’x<sub>0</sub>(x-x<sub>0</sub>)<sup>2</sup>/2!+▪▪▪+f<sup>(n)</sup>(x<sub>0</sub>)(x-x<sub>0</sub>)<sup>n</sup>/n!+f<sup>(n+1)</sup>(ξ)(x-x<sub>0</sub>)<sup>n+1</sup>/(n+1)!</th><br>   </tr><br>   <tr><br>      <td>导数零点定理</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">设f(x)在[a,b]可导，当 f’<sub>+</sub>(a)•f’(b)<0时，则∃ ξ∈(a,b)，使f’(ξ)="0</tr"><br>   </0时，则∃></th></tr><br>   <tr><br>      <td>导数介值定理</td><br>      <td>X</td><br>      <td>X</td><br>      <td>X</td><br>      <td>√</td><br>      <th width="43%">若f’<sub>+</sub>(a)≠f’<sub>-</sub>(b)，∀    μ，介于f’<sub>+</sub>(a)，f’<sub>-</sub>(b)之间，则∃ ξ ∈(a,b),使得f’(ξ)=μ</th></tr><br>   <br>   <tr><br>      <td>积分中值定理</td><br>      <td>√</td><br>      <td>X</td><br>      <td>√</td><br>      <td>X</td><br>      <th width="43%">则∃ ξ ∈(a,b),使得∫<sup>a</sup><sub>b</sub>f(x)dx=f(ξ)(b-a)</th></tr><br>   <br><br></table>
+<table>
+   <tr>
+      <th width="15%">定理名称</th>
+      <th width="10.5%">[a,b]连续</th>
+      <th width="10.5%">(a,b)可导</th>
+      <th width="10.5%">∃ξ∈[a,b]</th>
+      <th width="10.5%">∃ξ∈(a,b)</th>
+      <th width="43%">定理内容</th>
+   </tr>
+   <tr>
+      <td>有界定理</td>
+      <td>√</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <th width="43%">则∃M>0,使 -M≤f(x)≤M;</th>
+
+   </tr>
+   <tr>
+      <td>最值定理</td>
+      <td>√</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <th width="43%">则 m≤f(x)≤M，其中m,M分别为f(x)在[a,b]上的最小值和最大值</th>
+   </tr>
+   <tr>
+      <td>介值定理</td>
+      <td>√</td>
+      <td>X</td>
+      <td>√</td>
+      <td>X</td>
+      <th width="43%">当 m≤μ≤M，∃ ξ ∈[a,b],使得f(ξ)=μ，其中m,M分别为f(x)在[a,b]上的最小值和最大值</th>
+   </tr>
+   <tr>
+      <td>零点定理</td>
+      <td>√</td>
+      <td>X</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">若 f(a)•f(b)＜0,则∃ ξ∈(a,b),使得f(ξ)=0
+      </th>
+   </tr>
+   <tr>
+      <td>费马定理</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <th width="43%">若f(x)在x<sub>0</sub>处**可导**，且**取得极值**，则f’(x<sub>0</sub>)=0
+      </th>
+   </tr>
+   <tr>
+      <td>罗尔定理</td>
+      <td>√</td>
+      <td>√</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">若f(a)=f(b),则∃ ξ ∈(a,b),使得f’(ξ)=0
+      </th>
+   </tr>
+   <tr>
+      <td>拉氏定理</td>
+      <td>√</td>
+      <td>√</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">则∃ ξ ∈(a,b),使得f(b)-f(a)=f’(ξ)(b-a)
+   </th></tr>
+   <tr>
+      <td>柯西中值定理</td>
+      <td>√</td>
+      <td>√</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">若g’(x)≠0,则∃ ξ ∈(a,b),使得[f(b)-f(a)]/[g(b)-g(a)]=f’(ξ)/g’ξ)</th></tr>
+   
+   <tr>
+      <td>Taylor公式</td>
+      <th colspan="5">f(x)=f(x<sub>0</sub>)+f'(x<sub>0</sub>)(x-x<sub>0</sub>)+f''x<sub>0</sub>(x-x<sub>0</sub>)<sup>2</sup>/2!+▪▪▪+f<sup>(n)</sup>(x<sub>0</sub>)(x-x<sub>0</sub>)<sup>n</sup>/n!+f<sup>(n+1)</sup>(ξ)(x-x<sub>0</sub>)<sup>n+1</sup>/(n+1)!</th>
+   </tr>
+   <tr>
+      <td>导数零点定理</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">设f(x)在[a,b]可导，当 f’<sub>+</sub>(a)•f’(b)<0时，则∃ ξ∈(a,b)，使f’(ξ)="0</tr">
+   </0时，则∃></th></tr>
+   <tr>
+      <td>导数介值定理</td>
+      <td>X</td>
+      <td>X</td>
+      <td>X</td>
+      <td>√</td>
+      <th width="43%">若f’<sub>+</sub>(a)≠f’<sub>-</sub>(b)，∀    μ，介于f’<sub>+</sub>(a)，f’<sub>-</sub>(b)之间，则∃ ξ ∈(a,b),使得f’(ξ)=μ</th></tr>
+   
+   <tr>
+      <td>积分中值定理</td>
+      <td>√</td>
+      <td>X</td>
+      <td>√</td>
+      <td>X</td>
+      <th width="43%">则∃ ξ ∈(a,b),使得∫<sup>a</sup><sub>b</sub>f(x)dx=f(ξ)(b-a)</th></tr>
+   
+
+</table>
 ]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 高数基本概念 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -532,6 +922,20 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 高数基本概念 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -547,6 +951,67 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </ul>
 <p>最后，我对这个问题的答案是“对知识的信念”。笑来老师关于“财富自由”的前言中多次强调了“时间价值”的概念，可是最终还是要回到交换上去不是么？如果将这个概念用一个具体的东西去表述，我把它理解成“知识”，这也解释了为什么财富自由只能是一种状态，而不能是一个终点，因为以现代社会信息发展的速度，没有一种知识是永远能站在最高点的，而人作为知识的载体，只有通过不断地学习，更新知识，才能在交换的过程中占有主动地位。有些人可能会反问，这不就又回到上班族的那种机器的状态中去了么？其实这就是为什么我要回答是“对知识的信念”，大家可能都听说过“被财富奴役”，可很少有人听到“被知识奴役”的吧，“知识”这个概念我无法论述，但我接触过哲学后，明白了辨析语源概念的重要性，会发现所有的知识结构都是由一个个基础的概念拼接而成的，概念清晰了，学习便会通顺许多；接触经济学，又会发现社会化分工运作的奇妙之处，通过社会学才了解到原来民族主义是19世纪初才出现的东西。知识吸引着人们去探索丰富多彩的世界，从这个角度来讲，知识于人而言，是一种内驱力，所以财富自由的状态在这里才能闭环，这种内驱力像永动机一样，驱使着你我学习学习再学习。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学习学习再学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 笑来得到 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[极限小结]]></title>
+      <url>https://lacant.github.io/2016/07/27/Lim/</url>
+      <content type="html"><![CDATA[<p>极限复习小结</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
+<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
+<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
+<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
+<li>Taylor公式的应用的注意事项：  <ul>
+<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
+<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
+<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
+</ul>
+</li>
+<li>数列极限的计算：  <ul>
+<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
+<li>夹逼准则；</li>
+<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
+</ul>
+</li>
+<li>函数的连续性：  <ul>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 函数极限 </tag>
+            
+            <tag> 数列极限 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -563,6 +1028,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <li>推理符号:<br><strong>|a|     ⊥     ∽     △     ∠     ∩     ∪     ≠     ≡     ±     ≥     ≤     ∈     ←<br>↑     →     ↓     ↖     ↗     ↘     ↙     ∥     ∧     ∨  &amp;;   §</strong><br><strong>①   ②   ③   ④   ⑤   ⑥   ⑦   ⑧   ⑨   ⑩</strong>  </li>
 <li>希腊字母表：  </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -665,10 +1131,12 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>其它特殊字符：<br><strong>∈   ∏   ∑   ∕   √   ∝   ∞   ∟ ∠     ∣   ∥   ∧   ∨   ∩   ∪<br>∫   ∮  ∴   ∵   ∶   ∷   ∽   ≈   ≌   ≒   ≠   ≡   ≤   ≥   ≦   ≧<br>≮   ≯   ？   ⊙     ⊥<br>⊿   ⌒     ℃</strong>  </li>
 <li>指数0123：º¹²³   </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -741,6 +1209,7 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>常用Taylor展开式：  <ul>
 <li>sin x =x - x<sup>3</sup>/6 +o(x<sup>3</sup>)</li>
@@ -755,37 +1224,22 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </li>
 </ul>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[极限小结]]></title>
-      <url>https://lacant.github.io/2016/07/27/Lim/</url>
-      <content type="html"><![CDATA[<p>极限复习小结</p>
-<a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
-<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
-<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
-<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
-<li>Taylor公式的应用的注意事项：  <ul>
-<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
-<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
-<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
-</ul>
-</li>
-<li>数列极限的计算：  <ul>
-<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
-<li>夹逼准则；</li>
-<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
-</ul>
-</li>
-<li>函数的连续性：  <ul>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
-</ul>
-</li>
-</ul>
-]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> 数学符号 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -837,6 +1291,20 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Structural Mechanics </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 结构动力学 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -898,12 +1366,34 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Structural Mechanics </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 结构动力学 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Extremely Depressed]]></title>
       <url>https://lacant.github.io/2016/07/18/extremely%20depressed/</url>
       <content type="html"><![CDATA[<h1 id="心情不好，今日停更。"><a href="#心情不好，今日停更。" class="headerlink" title="心情不好，今日停更。"></a>心情不好，今日停更。</h1>]]></content>
+      
+        <categories>
+            
+            <category> 心情 </category>
+            
+        </categories>
+        
+        
     </entry>
     
     <entry>
@@ -923,6 +1413,20 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <p>再根据线弹性体的叠加原理，对方程积分，便得任意动力荷载作用下的位移响应：</p>
 <p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-18/39858361.jpg" alt=""></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Structural Mechanics </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 结构动力学 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -938,9 +1442,9 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </li>
 <li><p>在完成HEXO的本地配置后，第一个要做的当然是换主题，后面的教程里提供了主题下载的地址，我使用的是Next主题，因为有写得比较简单的教程。首先是打开<strong>Git Bash</strong>命令行窗口，(<strong>记得一定得是在HEXO根目录下面</strong>)输入如下指令：</p>
 <blockquote>
-<p>git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
+<p>git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
 </blockquote>
-<p>主题会自动下载，后面就是<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">配置主题</a>，这里只讲概念，具体操作参考后面提供的教程。</p>
+<p>主题会自动下载，后面就是<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">配置主题</a>，这里只讲概念，具体操作参考后面提供的教程。</p>
 </li>
 <li><p><strong>Hexo</strong>中必用的四个指令，我也只会这四个。</p>
 <p>清除冗余的意思</p>
@@ -961,11 +1465,27 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 </blockquote>
 <p>以上四个指令是最常用的，在主题配置完成后，每次只需执行<strong>文档上传</strong>的指令就能自动完成博文的更新。</p>
 <h2 id="教程篇"><a href="#教程篇" class="headerlink" title="教程篇"></a>教程篇</h2></li>
-<li><p>网络上提供的教程有很多，我转载一篇写得很入门级的，适合零基础的人的使用方法。这篇文章来自 <a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="external"><strong>Xuanwo’blog</strong></a></p>
+<li><p>网络上提供的教程有很多，我转载一篇写得很入门级的，适合零基础的人的使用方法。这篇文章来自 <a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener"><strong>Xuanwo’blog</strong></a></p>
 <p>今天花了一天的时间，总算是把站给搭出来了，还是有些小成就的，虽然很是简陋，但是有了最础的功能，对我来说就够了，因为这个站原本就是希望做成为一个记录自已学习成长的小世界，记录点滴，在未来给自己还原一个更加生动的回忆。</p>
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 小白 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -977,6 +1497,14 @@ $ hexo s       % 运行本地服务 http://localhost:4000
 <p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
 <p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 心情 </category>
+            
+        </categories>
+        
+        
     </entry>
     
   

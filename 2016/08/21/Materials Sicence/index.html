@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。">
+<meta name="keywords" content="Materials_Science">
 <meta property="og:type" content="article">
 <meta property="og:title" content="静矩和惯性矩">
 <meta property="og:url" content="https://lacant.github.io/2016/08/21/Materials Sicence/index.html">
 <meta property="og:site_name" content="婷婷的House">
 <meta property="og:description" content="今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i4.buimg.com/567571/c181f8a7da238266.jpg">
 <meta property="og:image" content="http://i1.buimg.com/567571/d987d2b8ffdd92bf.gif">
 <meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/26120794.jpg">
@@ -359,7 +361,7 @@
 <a id="more"></a>
 <h2 id="英文的重要性"><a href="#英文的重要性" class="headerlink" title="英文的重要性"></a>英文的重要性</h2><ul>
 <li>这次对于概念的再学习是因为要准备研究生考试，首先国内对于这两个概念的解释我认为对于学生的理解是完全无意义的。<strong>静矩</strong>在数学上属于二重积分中的内容，用于求解不规则平面图形<strong>形心</strong>坐标的一个方程式，实际并无任何物理意义。（这里的物理意义指的是必须是可以通过人的感官直接或间接感知的一种现象）单单就是一<strong>矩</strong>字，就总能给人带来无限的“遐想”，比如<strong>弯矩</strong>，虽然无法直接感知，但至少能通过弯曲变形的状态来进行间接理解，<strong>静矩</strong>这东西有间接对应的相关物理现象么？  </li>
-<li>事实上这两个工程领域的概念其实是一个数学表达式，而非一个有实际意义的物理量，或者说是可以被间接感知的物理量，<strong>惯性矩</strong> <a href="https://en.wikipedia.org/wiki/Second_moment_of_area" target="_blank" rel="external">The second moment of area</a> 和 <strong>静矩</strong> <a href="https://en.wikipedia.org/wiki/Moment_of_inertia" target="_blank" rel="external">Moment of inertia</a> 这两个概念在维基百科上有多个不同的词条，这是同一个积分表达式在不同的领域应用的结果，如果要正确理解这两个概念，只能从高等数学切入，否则只能引起概念的混淆。</li>
+<li>事实上这两个工程领域的概念其实是一个数学表达式，而非一个有实际意义的物理量，或者说是可以被间接感知的物理量，<strong>惯性矩</strong> <a href="https://en.wikipedia.org/wiki/Second_moment_of_area" target="_blank" rel="noopener">The second moment of area</a> 和 <strong>静矩</strong> <a href="https://en.wikipedia.org/wiki/Moment_of_inertia" target="_blank" rel="noopener">Moment of inertia</a> 这两个概念在维基百科上有多个不同的词条，这是同一个积分表达式在不同的领域应用的结果，如果要正确理解这两个概念，只能从高等数学切入，否则只能引起概念的混淆。</li>
 <li>这两个概念的阐述必然是要引入部分高等数学的基础知识，首先需要先了解极限的概念，极限用最通俗的语言来表述就是“无限接近”，非专业的朋友们知道这么个意思就可以了，定积分的使用也是极限概念的拓展，所以定积分求得的结果必然不是精确的，但因为是“无限接近”，所以误差是很小的。另外一点就是，工程上使用的材料大多是几何规则的形状，所以工程类的教材里把这两个概念的数学表式是用定积分来呈现的，但在数学上，这部分是二重积分的领域，这两者是有根本性区别的，哎，说多了都是痛，要不工科被人看不上呢。</li>
 </ul>
 <h2 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h2><blockquote>
@@ -374,7 +376,7 @@
 <ul>
 <li><p>有了上面的介绍，这个数学表达式就好理解了，  </p>
 <ul>
-<li>∫ : 这个叫积分符号，它是拉丁语summa的简写，是求和的意思，这个符号是由伟大的数学家<a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz" target="_blank" rel="external">Leibniz</a>发明的，Leibniz是<a href="https://en.wikipedia.org/wiki/Johann_Bernoulli" target="_blank" rel="external">Bernoulli</a>的老师，Bernoulli是<a href="https://en.wikipedia.org/wiki/Leonhard_Euler" target="_blank" rel="external">Euler</a>的老师，Euler是<a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="external">Lagrange</a>的老师，Lagrange是<a href="https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy" target="_blank" rel="external">Cauchy</a>的老师，Cauchy是<a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="external">Gauss</a>的老师，Gauss是<a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="external">Dirichlet</a>的老师，Dirichlet是<a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="external">Riemann</a>的老师，然后，定积分的精确定义是由Riemann给出的，就这样。</li>
+<li>∫ : 这个叫积分符号，它是拉丁语summa的简写，是求和的意思，这个符号是由伟大的数学家<a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz" target="_blank" rel="noopener">Leibniz</a>发明的，Leibniz是<a href="https://en.wikipedia.org/wiki/Johann_Bernoulli" target="_blank" rel="noopener">Bernoulli</a>的老师，Bernoulli是<a href="https://en.wikipedia.org/wiki/Leonhard_Euler" target="_blank" rel="noopener">Euler</a>的老师，Euler是<a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="noopener">Lagrange</a>的老师，Lagrange是<a href="https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy" target="_blank" rel="noopener">Cauchy</a>的老师，Cauchy是<a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="noopener">Gauss</a>的老师，Gauss是<a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="noopener">Dirichlet</a>的老师，Dirichlet是<a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="noopener">Riemann</a>的老师，然后，定积分的精确定义是由Riemann给出的，就这样。</li>
 <li>a-b：代表了那片被压扁的吐司的宽度；</li>
 <li>f(x): 是每一小份吐司的长度；</li>
 <li>dx: 是每一份吐司的宽度；</li>
@@ -391,7 +393,7 @@
 </ul>
 <h2 id="弯曲变形"><a href="#弯曲变形" class="headerlink" title="弯曲变形"></a>弯曲变形</h2><ul>
 <li>在进一步阐述那两个概念前，读者们需要了解工程上“弯曲变形”和“胡克定律”的概念，因为<strong>静矩</strong>和<strong>惯性矩</strong>可以用来衡量材料能否被压变形和压断的一个指标。<h4 id="梁的纯弯曲变形"><a href="#梁的纯弯曲变形" class="headerlink" title="梁的纯弯曲变形"></a>梁的纯弯曲变形</h4></li>
-<li>梁(<a href="https://en.wikipedia.org/wiki/Beam_(structure" target="_blank" rel="external">Beam</a>)：在工程上主要发生弯曲变形的构件；<br>求如下图所示：<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg" alt="定积分定义" title="定积分的定义" width="250" height="200"></li>
+<li>梁(<a href="https://en.wikipedia.org/wiki/Beam_(structure" target="_blank" rel="noopener">Beam</a>)：在工程上主要发生弯曲变形的构件；<br>求如下图所示：<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg" alt="定积分定义" title="定积分的定义" width="250" height="200"></li>
 </ul>
 <p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/44785887.jpg" alt="形心坐标公式"></p>
 <p>这是平面图形的形心的横坐标(X轴)的积分公式，看出来了么？这个公式的分子部分就教科书上说的<strong>静矩</strong>了，分母部分是平面图形的面积。这个公式展开来用通俗语言表述就是：我用一把刀把一个平面图形切割成n条，n是多大呢？大到每一条的形状都像是一个矩形的样子，那么每一条矩形的面积就是f(x)dx,再把每一条矩形的面积都X上它到Y轴的矩离，最后把所有的结果相加，这是便是<strong>静矩</strong>的几何意义。  </p>
@@ -541,7 +543,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -558,7 +560,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
