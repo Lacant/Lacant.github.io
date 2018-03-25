@@ -92,10 +92,12 @@
 <meta property="og:site_name" content="婷婷的House">
 <meta property="og:description" content="吴坦恩机器学习课程小结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T13:04:52.805Z">
+<meta property="og:image" content="https://github.com/Lacant/test01/blob/master/costfunction.jpeg">
+<meta property="og:updated_time" content="2018-03-25T09:37:05.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Review:Linear Regression VS Logical Regression">
 <meta name="twitter:description" content="吴坦恩机器学习课程小结">
+<meta name="twitter:image" content="https://github.com/Lacant/test01/blob/master/costfunction.jpeg">
 
 
 
@@ -395,9 +397,21 @@ table th:first-of-type {
 <td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
 <td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
 </tr>
+<tr>
+<td>Regularization</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m (h_\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
+</tr>
 </tbody>
 </table>
 </div>
+<ul>
+<li>公式解析<ul>
+<li>Hypothesis function是预测函数，Cost function是代价函数，代价函数$J(\theta)$是指所有样本数据与$h_\theta(x)$的偏差，所以这里有个sum的求和;</li>
+<li>梯度下降是为了求$J(\theta)$的最小值，也就是意味着求出参数$\theta$,使得偏差$J(\theta)$最小;</li>
+<li>梯度下降算法的计算过程，实际上是每次都将所有样本数据代入计算公式，进行迭代计算，直至参数$\theta$的变化率趋于0;<br><img src="https://github.com/Lacant/test01/blob/master/costfunction.jpeg" alt="machinelearning" title="costFunction" width="150" height="200"></li>
+</ul>
+</li>
+</ul>
 <ul>
 <li><p>在逻辑回归中，Hypothesis function的值代表着y=1的概率: $h_\theta(x) = P(y=1|x;\theta)$</p>
 </li>
@@ -405,7 +419,7 @@ table th:first-of-type {
 <ul>
 <li><p>定义costFunction</p>
 <pre><code>  $ function [jVal, gradient] = costFunction(theta)
-  $ jVal = (theta(1)-5)^2 + (theta(2)-5_^2;
+  $ jVal = (theta(1)-5)^2 + (theta(2)-5)^2;
   $ gradient = zeros (2,1);
   $ gradient(1) = 2* (theta(1)-5);
   $ gradient(2) = 2*（theta(2)-5);
@@ -461,6 +475,10 @@ table th:first-of-type {
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/23/180323_Octave手册/" rel="prev" title="Octave Tutorial">
+                Octave Tutorial <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -551,7 +569,7 @@ table th:first-of-type {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -568,7 +586,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -4,6 +4,88 @@
   
     
     <entry>
+      <title><![CDATA[Octave Tutorial]]></title>
+      <url>https://lacant.github.io/2018/03/23/180323_Octave%E6%89%8B%E5%86%8C/</url>
+      <content type="html"><![CDATA[<p>Octave 笔记</p>
+<a id="more"></a>
+<h2 id="基础运算"><a href="#基础运算" class="headerlink" title="基础运算"></a>基础运算</h2><ul>
+<li><p>size</p>
+<pre><code>  $ size(A)  %矩阵大小
+  $ size(A,1)    %矩阵行数;
+  $ size(A,2)    %column of matrix;
+  $ length(v)    %size of the longest vector dimention;
+  $ load XX.dat  %load XX.dat file to octave;
+  $ who          %show variables in the current scope;
+  $ whos         %show details of variables in the current scope;
+  $ clear x      %delete variable x;
+  $ v = vector_y(1:10) %take the first 10 element of y;
+  $ save hello.mat v   %save vector v to the file hello.mat;
+  $ A(3,2)       %take $A_{3,2}$ from matrix A;
+  $ A(2,:)       %fetch everything from second row of matrix A;
+  $ A(:,2)       %fetch everything from second column of matrix A;
+  $ A([1 3],:)   %fetch everything from first row and second row of matrix A;
+  $ A = (A,[1;2;3]) %A矩阵最右+一个列向量;
+  $ A(:)         % put all elements of A into a single vector;
+</code></pre></li>
+<li><p>for循环:</p>
+<pre><code>  $ for i:5;
+  $    v(i) = 2^i;
+  $ end;
+  $ v
+</code></pre><p>  输出：</p>
+<script type="math/tex; mode=display">V_{5,1}= \begin{pmatrix}2 \\2^2 \\2^3 \\2^4 \\2^5\end{pmatrix}</script></li>
+<li><p>函数定义</p>
+<ul>
+<li>用函数名新建一个文件，以.m为后缀存储，比如：squareThisNumber.m;</li>
+<li>定义函数：<pre><code>  $ function y = squareThisNumber(x);  % squareThisNumber这个函数的输出值，存储在y这个变量中;
+  $ y = x^2;
+</code></pre></li>
+<li>调用函数：在squareThisNumber.m这个文档目录下，输入代码：<pre><code>  $ squareThisNumber(5);
+</code></pre></li>
+<li>例2：<pre><code>  $ function [y1,y2] = squareThisNumber(x)
+  $ y1 = x^2;
+  $ y2 = x^2;
+  $ [a,b] = squareThisNumber(5);  %调用;
+</code></pre></li>
+<li>代价函数：<pre><code>  $ function J = costFunctionJ(X, y, theta);
+  $ m = length(y);
+  $ predictions = X*theta;
+  $ sqrErrors = (predictions-y).^2;
+  $ J = 1/(2*m) * sum(sqrErrors);
+</code></pre><ul>
+<li>调用函数：<pre><code>  $ X = [1 1;1 2;1 3]  %输入矩阵X;
+  $ y = [1;2;3]        %输入矩阵y;
+  $ theta = [0;1]      %输入矩阵theta;
+  $ j = costFunctionJ(X,y,theta);%调用函数;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Octave增加查找路径：</p>
+<pre><code>  $ addpath(&#39;c:\users\sheirly\desktop&#39;)
+</code></pre></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Octave </tag>
+            
+            <tag> machinelearning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Review:Linear Regression VS Logical Regression]]></title>
       <url>https://lacant.github.io/2018/03/22/180322_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>吴坦恩机器学习课程小结</p>
@@ -52,9 +134,21 @@ table th:first-of-type {
 <td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
 <td style="text-align:left">$\theta_j := \theta_j -\alpha\frac{\partial}{\partial\theta_j}J(\theta)$</td>
 </tr>
+<tr>
+<td>Regularization</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m (h_\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
+</tr>
 </tbody>
 </table>
 </div>
+<ul>
+<li>公式解析<ul>
+<li>Hypothesis function是预测函数，Cost function是代价函数，代价函数$J(\theta)$是指所有样本数据与$h_\theta(x)$的偏差，所以这里有个sum的求和;</li>
+<li>梯度下降是为了求$J(\theta)$的最小值，也就是意味着求出参数$\theta$,使得偏差$J(\theta)$最小;</li>
+<li>梯度下降算法的计算过程，实际上是每次都将所有样本数据代入计算公式，进行迭代计算，直至参数$\theta$的变化率趋于0;<br><img src="https://github.com/Lacant/test01/blob/master/costfunction.jpeg" alt="machinelearning" title="costFunction" width="150" height="200"></li>
+</ul>
+</li>
+</ul>
 <ul>
 <li><p>在逻辑回归中，Hypothesis function的值代表着y=1的概率: $h_\theta(x) = P(y=1|x;\theta)$</p>
 </li>
@@ -62,7 +156,7 @@ table th:first-of-type {
 <ul>
 <li><p>定义costFunction</p>
 <pre><code>  $ function [jVal, gradient] = costFunction(theta)
-  $ jVal = (theta(1)-5)^2 + (theta(2)-5_^2;
+  $ jVal = (theta(1)-5)^2 + (theta(2)-5)^2;
   $ gradient = zeros (2,1);
   $ gradient(1) = 2* (theta(1)-5);
   $ gradient(2) = 2*（theta(2)-5);
@@ -176,6 +270,14 @@ table th:first-of-type {
   $ PreferredAuthentications publickey
   $ IdentityFile ~/.ssh/id_rsa
   $ Port 443
+</code></pre></li>
+</ul>
+</blockquote>
+</li>
+<li>Bug2<blockquote>
+<p>ERROR: Repository not found.<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.</p>
+<ul>
+<li>Solution:<pre><code>  $ git remote set-url origin git@github.com:xxxxxx/xxxxxx.git
 </code></pre></li>
 </ul>
 </blockquote>
@@ -1430,25 +1532,6 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
-      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
-      <url>https://lacant.github.io/2016/07/17/about_me/</url>
-      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
-<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
-<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
-<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
-<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 心情 </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[文科小白Hexo建站]]></title>
       <url>https://lacant.github.io/2016/07/17/%E6%96%87%E7%A7%91%E5%B0%8F%E7%99%BDHexo%E5%BB%BA%E7%AB%99/</url>
       <content type="html"><![CDATA[<p>作为一个毫无代码经验的理科生，得幸有些扎实的互联网基础，这篇文章是为了分享在建站的过程可会遇到一些的基本概念，撑握了这些概念，便能方便地使用Github来搭建个人博客。同时也是回应在Wechat公众号里发布的收费课程，在我的概念里，互联网的精神是分享，将这类简单的技术做成收费视频，是我坚决抵制的，毕竟我们只为了搭建一个可以自由写作的平台，仅此而已。<br><a id="more"></a></p>
@@ -1504,6 +1587,25 @@ $ hexo s       % 运行本地服务 http://localhost:4000
             <tag> hexo </tag>
             
         </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
+      <url>https://lacant.github.io/2016/07/17/about_me/</url>
+      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
+<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
+<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
+<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
+<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 心情 </category>
+            
+        </categories>
+        
         
     </entry>
     

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Octave,machinelearning," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="T_T">
-<meta property="og:type" content="website">
-<meta property="og:title" content="婷婷的House">
-<meta property="og:url" content="https://lacant.github.io/tags/原版阅读/index.html">
+<meta name="description" content="Octave 笔记">
+<meta name="keywords" content="Octave,machinelearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octave Tutorial">
+<meta property="og:url" content="https://lacant.github.io/2018/03/23/180323_Octave手册/index.html">
 <meta property="og:site_name" content="婷婷的House">
-<meta property="og:description" content="T_T">
+<meta property="og:description" content="Octave 笔记">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T03:56:08.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="婷婷的House">
-<meta name="twitter:description" content="T_T">
+<meta name="twitter:title" content="Octave Tutorial">
+<meta name="twitter:description" content="Octave 笔记">
 
 
 
@@ -114,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="https://lacant.github.io/tags/原版阅读/"/>
+  <link rel="canonical" href="https://lacant.github.io/2018/03/23/180323_Octave手册/"/>
 
-  <title> 标签: 原版阅读 | 婷婷的House </title>
+  <title> Octave Tutorial | 婷婷的House </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,46 +269,225 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        原版阅读
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Octave Tutorial
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-23T08:55:29+08:00" content="2018-03-23">
+              2018-03-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>Octave 笔记</p>
+<a id="more"></a>
+<h2 id="基础运算"><a href="#基础运算" class="headerlink" title="基础运算"></a>基础运算</h2><ul>
+<li><p>size</p>
+<pre><code>  $ size(A)  %矩阵大小
+  $ size(A,1)    %矩阵行数;
+  $ size(A,2)    %column of matrix;
+  $ length(v)    %size of the longest vector dimention;
+  $ load XX.dat  %load XX.dat file to octave;
+  $ who          %show variables in the current scope;
+  $ whos         %show details of variables in the current scope;
+  $ clear x      %delete variable x;
+  $ v = vector_y(1:10) %take the first 10 element of y;
+  $ save hello.mat v   %save vector v to the file hello.mat;
+  $ A(3,2)       %take $A_{3,2}$ from matrix A;
+  $ A(2,:)       %fetch everything from second row of matrix A;
+  $ A(:,2)       %fetch everything from second column of matrix A;
+  $ A([1 3],:)   %fetch everything from first row and second row of matrix A;
+  $ A = (A,[1;2;3]) %A矩阵最右+一个列向量;
+  $ A(:)         % put all elements of A into a single vector;
+</code></pre></li>
+<li><p>for循环:</p>
+<pre><code>  $ for i:5;
+  $    v(i) = 2^i;
+  $ end;
+  $ v
+</code></pre><p>  输出：</p>
+<script type="math/tex; mode=display">V_{5,1}= \begin{pmatrix}2 \\2^2 \\2^3 \\2^4 \\2^5\end{pmatrix}</script></li>
+<li><p>函数定义</p>
+<ul>
+<li>用函数名新建一个文件，以.m为后缀存储，比如：squareThisNumber.m;</li>
+<li>定义函数：<pre><code>  $ function y = squareThisNumber(x);  % squareThisNumber这个函数的输出值，存储在y这个变量中;
+  $ y = x^2;
+</code></pre></li>
+<li>调用函数：在squareThisNumber.m这个文档目录下，输入代码：<pre><code>  $ squareThisNumber(5);
+</code></pre></li>
+<li>例2：<pre><code>  $ function [y1,y2] = squareThisNumber(x)
+  $ y1 = x^2;
+  $ y2 = x^2;
+  $ [a,b] = squareThisNumber(5);  %调用;
+</code></pre></li>
+<li>代价函数：<pre><code>  $ function J = costFunctionJ(X, y, theta);
+  $ m = length(y);
+  $ predictions = X*theta;
+  $ sqrErrors = (predictions-y).^2;
+  $ J = 1/(2*m) * sum(sqrErrors);
+</code></pre><ul>
+<li>调用函数：<pre><code>  $ X = [1 1;1 2;1 3]  %输入矩阵X;
+  $ y = [1;2;3]        %输入矩阵y;
+  $ theta = [0;1]      %输入矩阵theta;
+  $ j = costFunctionJ(X,y,theta);%调用函数;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Octave增加查找路径：</p>
+<pre><code>  $ addpath(&#39;c:\users\sheirly\desktop&#39;)
+</code></pre></li>
+</ul>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/10/AR book finder/" itemprop="url">
-              
-                <span itemprop="name">AR BOOK FINDER</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-10T15:55:29+08:00"
-              content="2016-08-10" >
-          08-10
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Octave/" rel="tag">#Octave</a>
+          
+            <a href="/tags/machinelearning/" rel="tag">#machinelearning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/180322_机器学习小结/" rel="next" title="Review:Linear Regression VS Logical Regression">
+                <i class="fa fa-chevron-left"></i> Review:Linear Regression VS Logical Regression
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -314,6 +495,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://i61.photobucket.com/albums/h66/Tim_Chou/57_zps99s1ycgl.jpg"
@@ -384,6 +578,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础运算"><span class="nav-number">1.</span> <span class="nav-text">基础运算</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -480,6 +685,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
