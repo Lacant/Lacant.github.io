@@ -4,19 +4,76 @@
   
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>https://lacant.github.io/2018/03/26/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+      <title><![CDATA[Git版本库创建]]></title>
+      <url>https://lacant.github.io/2018/03/26/180326_Git%E7%89%88%E6%9C%AC%E5%BA%93%E5%88%9B%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<p>git本地版本库创建与配置（二）</p>
+<a id="more"></a>
+<h2 id="git基本运行框架"><a href="#git基本运行框架" class="headerlink" title="git基本运行框架"></a>git基本运行框架</h2><div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/git_structure.jpeg" alt="git" title="git框架" width="458" height="234">
+</div>
+
+<ul>
+<li>工作区（Working Directory) 是完成 git 初始化之后的文件夹，工作区内至少要包含 .git 文件夹;<pre><code>  $ git init          % 在文件夹下用这个指令将该文件夹初始化为一个 git 工作区;
+</code></pre></li>
+</ul>
+<div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/%E5%B7%A5%E4%BD%9C%E5%8C%BA.PNG" alt="git" title="工作区" width="600" height="270">
+</div>
+
+<ul>
+<li>版本库（Repository）其实就是工作区内 .git 这个文件夹，Repository包含了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支 master ，以及指向 master 的一个指针叫 HEAD;</li>
+<li>git 的基本运行逻辑是可以无数个文件内容修改的索引（index），每个保存（git commit）后的 index 便是一个 branch;<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2></li>
+<li>首先，新建一个空文件夹 learngit，用 git init 初始化 learngit 将其转化为 git 的一个工作区;</li>
+<li>新建三个文档 “testmaster.txt”、“testdev1.txt”、“testdev2.txt”，用 git status 查看工作区的情况，新建的三个文档会被红字标识，（“Untracked files”）;</li>
+</ul>
+<div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/gitstatus1.PNG" alt="git" title="unindex 标识" width="450" height="180">
+</div>
+
+<ul>
+<li><p>通过 ‘git add’、’git commit’ 先创建一个完整的索引文件，如果在master分支下，该索引文件的就可以认为是 master,之后便可创建第二个(dev1)，第三个(dev1)…分支索引;</p>
+<pre><code>      $ git add testmaster.txt
+      $ git commit -m &#39;index master&#39;
+      $ git branch dev1
+      $ git branch dev2
+      $ git checkout dev1
+      $ git add testdev1.txt
+      $ git commit -m &#39;index dev1&#39;
+      $ git checkout dev2
+      $ git add testdev2.txt
+      $ git commit -m &#39;index dev2&#39;
+</code></pre><div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/3.PNG" alt="git" title="创建分支" width="450" height="180">
+</div>
+<div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/4.PNG" alt="git" title="索引并存储" width="450" height="180">
+</div>
+<div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180326/5.PNG" alt="git" title="查看索引" width="450" height="180">
+</div>
+</li>
+<li><p>完成以上代码之后，再用 ls 在各个 branch下查看，会发现，master分支仅索引了“testmaster.txt”这个文件，dev1 索引了“testmaster 和 testdev1” 这两个文件，dev2 索引了“testmaster 和 testdev2” 这两个文件，这是因为 dev1 和 dev2 都是在 master 分支下创立的，所以这两个分支进行index操作的时候，其对标对象都是master这个主分支。此时，如你现在切换到 master分支下，那么对应工作区内的文件只会显示’testmaster.txt’,如果切换到 dev1 分支，工作区内就会出现 ‘testmaster’ 和 ‘testdev1’。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></li>
+<li>git的运行，本质上是index的创建与合并，工作区内的第一个主分支（默认情况下为master）可以理解为一颗树的主杆，所有的分支都是在这个主杆上分出去的树枝，树枝可以通过 git merge 合并到主杆上去，壮大主杆，合并的运算逻辑应该就是先比较index的差异，同一个树枝上的index可以合并，否则便会有冲突。</li>
+</ul>
+<h2 id="Bugme"><a href="#Bugme" class="headerlink" title="Bugme"></a>Bugme</h2><ul>
+<li>工作区内必须创建一个主分支后（默认为master）才可创建其它分支，主分支的创建的标识是建立一个完整的index，也就是“git add &amp; git commit”，否则系统会提示找不到分支的错误：<pre><code>  $ fatal: Not a valid object name: &#39;master&#39;.
+</code></pre></li>
+</ul>
 ]]></content>
       
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
         
     </entry>
     
@@ -255,7 +312,7 @@ table th:first-of-type {
     </entry>
     
     <entry>
-      <title><![CDATA[Git建库与配置]]></title>
+      <title><![CDATA[Git建立远程库与配置]]></title>
       <url>https://lacant.github.io/2018/03/21/180321_Git%E5%BB%BA%E5%BA%93%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p>Git建库与配置基本流程<br><a id="more"></a></p>
 <h2 id="Git初始化配置"><a href="#Git初始化配置" class="headerlink" title="Git初始化配置"></a>Git初始化配置</h2><ul>
@@ -1070,6 +1127,53 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
+      <title><![CDATA[极限小结]]></title>
+      <url>https://lacant.github.io/2016/07/27/Lim/</url>
+      <content type="html"><![CDATA[<p>极限复习小结</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
+<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
+<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
+<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
+<li>Taylor公式的应用的注意事项：  <ul>
+<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
+<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
+<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
+</ul>
+</li>
+<li>数列极限的计算：  <ul>
+<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
+<li>夹逼准则；</li>
+<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
+</ul>
+</li>
+<li>函数的连续性：  <ul>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 函数极限 </tag>
+            
+            <tag> 数列极限 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[常用数学符号]]></title>
       <url>https://lacant.github.io/2016/07/27/MATH%20CODE/</url>
       <content type="html"><![CDATA[<p>常用数学符号</p>
@@ -1298,53 +1402,6 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
-      <title><![CDATA[极限小结]]></title>
-      <url>https://lacant.github.io/2016/07/27/Lim/</url>
-      <content type="html"><![CDATA[<p>极限复习小结</p>
-<a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
-<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
-<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
-<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
-<li>Taylor公式的应用的注意事项：  <ul>
-<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
-<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
-<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
-</ul>
-</li>
-<li>数列极限的计算：  <ul>
-<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
-<li>夹逼准则；</li>
-<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
-</ul>
-</li>
-<li>函数的连续性：  <ul>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> 高等数学 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 函数极限 </tag>
-            
-            <tag> 数列极限 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Chapter 10th-2]]></title>
       <url>https://lacant.github.io/2016/07/20/Chapter%2010-2/</url>
       <content type="html"><![CDATA[<p>老朱第十章课后习题作业（二）</p>
@@ -1532,6 +1589,25 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
+      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
+      <url>https://lacant.github.io/2016/07/17/about_me/</url>
+      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
+<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
+<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
+<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
+<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 心情 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[文科小白Hexo建站]]></title>
       <url>https://lacant.github.io/2016/07/17/%E6%96%87%E7%A7%91%E5%B0%8F%E7%99%BDHexo%E5%BB%BA%E7%AB%99/</url>
       <content type="html"><![CDATA[<p>作为一个毫无代码经验的理科生，得幸有些扎实的互联网基础，这篇文章是为了分享在建站的过程可会遇到一些的基本概念，撑握了这些概念，便能方便地使用Github来搭建个人博客。同时也是回应在Wechat公众号里发布的收费课程，在我的概念里，互联网的精神是分享，将这类简单的技术做成收费视频，是我坚决抵制的，毕竟我们只为了搭建一个可以自由写作的平台，仅此而已。<br><a id="more"></a></p>
@@ -1587,25 +1663,6 @@ $ hexo s       % 运行本地服务 http://localhost:4000
             <tag> hexo </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
-      <url>https://lacant.github.io/2016/07/17/about_me/</url>
-      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
-<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
-<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
-<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
-<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 心情 </category>
-            
-        </categories>
-        
         
     </entry>
     
