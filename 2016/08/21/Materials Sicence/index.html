@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Materials_Science," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。">
+<meta name="keywords" content="Materials_Science">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静矩和惯性矩">
+<meta property="og:url" content="https://lacant.github.io/2016/08/21/Materials Sicence/index.html">
+<meta property="og:site_name" content="婷婷的House">
+<meta property="og:description" content="今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i4.buimg.com/567571/c181f8a7da238266.jpg">
+<meta property="og:image" content="http://i1.buimg.com/567571/d987d2b8ffdd92bf.gif">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/26120794.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/44785887.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/13125619.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/88390171.jpg">
+<meta property="og:updated_time" content="2018-03-26T07:05:40.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="静矩和惯性矩">
+<meta name="twitter:description" content="今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。">
+<meta name="twitter:image" content="http://i4.buimg.com/567571/c181f8a7da238266.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://lacant.github.io/2016/08/21/Materials Sicence/"/>
+
+  <title> 静矩和惯性矩 | 婷婷的House </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80853698-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">婷婷的House</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">周周的力学日志</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                静矩和惯性矩
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T08:55:29+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Structural-Mechanics/" itemprop="url" rel="index">
+                    <span itemprop="name">Structural Mechanics</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今日复习到高等数学中的“二重积分”的概念，在对“形心”公式的学习中，更新了材力学习当中对于“静矩”和“惯性矩”这两个概念的认知。</p>
+<a id="more"></a>
+<h2 id="英文的重要性"><a href="#英文的重要性" class="headerlink" title="英文的重要性"></a>英文的重要性</h2><ul>
+<li>这次对于概念的再学习是因为要准备研究生考试，首先国内对于这两个概念的解释我认为对于学生的理解是完全无意义的。<strong>静矩</strong>在数学上属于二重积分中的内容，用于求解不规则平面图形<strong>形心</strong>坐标的一个方程式，实际并无任何物理意义。（这里的物理意义指的是必须是可以通过人的感官直接或间接感知的一种现象）单单就是一<strong>矩</strong>字，就总能给人带来无限的“遐想”，比如<strong>弯矩</strong>，虽然无法直接感知，但至少能通过弯曲变形的状态来进行间接理解，<strong>静矩</strong>这东西有间接对应的相关物理现象么？  </li>
+<li>事实上这两个工程领域的概念其实是一个数学表达式，而非一个有实际意义的物理量，或者说是可以被间接感知的物理量，<strong>惯性矩</strong> <a href="https://en.wikipedia.org/wiki/Second_moment_of_area" target="_blank" rel="noopener">The second moment of area</a> 和 <strong>静矩</strong> <a href="https://en.wikipedia.org/wiki/Moment_of_inertia" target="_blank" rel="noopener">Moment of inertia</a> 这两个概念在维基百科上有多个不同的词条，这是同一个积分表达式在不同的领域应用的结果，如果要正确理解这两个概念，只能从高等数学切入，否则只能引起概念的混淆。</li>
+<li>这两个概念的阐述必然是要引入部分高等数学的基础知识，首先需要先了解极限的概念，极限用最通俗的语言来表述就是“无限接近”，非专业的朋友们知道这么个意思就可以了，定积分的使用也是极限概念的拓展，所以定积分求得的结果必然不是精确的，但因为是“无限接近”，所以误差是很小的。另外一点就是，工程上使用的材料大多是几何规则的形状，所以工程类的教材里把这两个概念的数学表式是用定积分来呈现的，但在数学上，这部分是二重积分的领域，这两者是有根本性区别的，哎，说多了都是痛，要不工科被人看不上呢。</li>
+</ul>
+<h2 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h2><blockquote>
+<ul>
+<li><strong>曲边梯行</strong>：所谓曲边梯形是指这样的图形，它有三条边是直线段，其中两条是平行的，第三条与前两条垂直叫做底边，第四条边是一条曲线弧叫做曲边，这条曲边与任意一条垂直于底边的直线至多只交于一点。面包房卖的吐司，把它压扁了就是一个曲边梯形的形状。<br><img src="http://i4.buimg.com/567571/c181f8a7da238266.jpg" alt="定积分" title="曲边梯行" width="150" height="200"></li>
+</ul>
+</blockquote>
+<ul>
+<li>定积分的求解其实就是一个切吐司的过程，你要是手头有一片切好的吐司，拿出来，然后用刀把它切成N小份，N是多大？在数学世界里，它是一个无穷大。实际上，只要能把每一小块的面包都切成长方形的样子，那就是分得差不多的样子了。就像这样：<br><img src="http://i1.buimg.com/567571/d987d2b8ffdd92bf.gif" alt="定积分定义" title="定积分的定义" width="250" height="200"><br>于是乎我们就有了无数块一样宽，但不一样长的面包条，每一个面包条的面积是很容易计算的，属于小学的知识，长x宽就是了，如果把所有的面积相加，那便是那块被压扁的吐司的面积了。这便是定积分要表达的内容。  </li>
+</ul>
+<h4 id="积分表达式"><a href="#积分表达式" class="headerlink" title="积分表达式"></a>积分表达式</h4><p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/26120794.jpg" alt="定积分定义" title="积分表达式" width="100" height="50"></p>
+<ul>
+<li><p>有了上面的介绍，这个数学表达式就好理解了，  </p>
+<ul>
+<li>∫ : 这个叫积分符号，它是拉丁语summa的简写，是求和的意思，这个符号是由伟大的数学家<a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz" target="_blank" rel="noopener">Leibniz</a>发明的，Leibniz是<a href="https://en.wikipedia.org/wiki/Johann_Bernoulli" target="_blank" rel="noopener">Bernoulli</a>的老师，Bernoulli是<a href="https://en.wikipedia.org/wiki/Leonhard_Euler" target="_blank" rel="noopener">Euler</a>的老师，Euler是<a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="noopener">Lagrange</a>的老师，Lagrange是<a href="https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy" target="_blank" rel="noopener">Cauchy</a>的老师，Cauchy是<a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="noopener">Gauss</a>的老师，Gauss是<a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="noopener">Dirichlet</a>的老师，Dirichlet是<a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="noopener">Riemann</a>的老师，然后，定积分的精确定义是由Riemann给出的，就这样。</li>
+<li>a-b：代表了那片被压扁的吐司的宽度；</li>
+<li>f(x): 是每一小份吐司的长度；</li>
+<li>dx: 是每一份吐司的宽度；</li>
+</ul>
+</li>
+<li><p>定积的几何意义是用于计算平面图形的面积的，特别是不规则图形的面积，把无法计算的整块面积切成一小块一小块的长方形，然后再相加求和，多么美妙的方法！！！</p>
+</li>
+<li>定积分有什么用？<ul>
+<li>几何学：用以计算面积、体积、曲线长等;</li>
+<li>物理上：变力做功、体积、引力、重心等;  </li>
+<li>定积分是一种数学工具，有如笔与作家是一种工具一样，定积分是科学工作者的一个基本工具，许多工程、物理概念由它而来。就比如下面要谈到的“静矩”和“惯性矩”。  </li>
+</ul>
+</li>
+</ul>
+<h2 id="弯曲变形"><a href="#弯曲变形" class="headerlink" title="弯曲变形"></a>弯曲变形</h2><ul>
+<li>在进一步阐述那两个概念前，读者们需要了解工程上“弯曲变形”和“胡克定律”的概念，因为<strong>静矩</strong>和<strong>惯性矩</strong>可以用来衡量材料能否被压变形和压断的一个指标。<h4 id="梁的纯弯曲变形"><a href="#梁的纯弯曲变形" class="headerlink" title="梁的纯弯曲变形"></a>梁的纯弯曲变形</h4></li>
+<li>梁(<a href="https://en.wikipedia.org/wiki/Beam_(structure" target="_blank" rel="noopener">Beam</a>)：在工程上主要发生弯曲变形的构件；<br>求如下图所示：<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/36957205.jpg" alt="定积分定义" title="定积分的定义" width="250" height="200"></li>
+</ul>
+<p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/44785887.jpg" alt="形心坐标公式"></p>
+<p>这是平面图形的形心的横坐标(X轴)的积分公式，看出来了么？这个公式的分子部分就教科书上说的<strong>静矩</strong>了，分母部分是平面图形的面积。这个公式展开来用通俗语言表述就是：我用一把刀把一个平面图形切割成n条，n是多大呢？大到每一条的形状都像是一个矩形的样子，那么每一条矩形的面积就是f(x)dx,再把每一条矩形的面积都X上它到Y轴的矩离，最后把所有的结果相加，这是便是<strong>静矩</strong>的几何意义。  </p>
+<h2 id="弯曲应力"><a href="#弯曲应力" class="headerlink" title="弯曲应力"></a>弯曲应力</h2><p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/13125619.jpg" alt="梁的弯曲" title="纵向对称面" width="250" height="200"></p>
+<ul>
+<li>材料力学中，梁的纵向线应变 <strong>ε=a/ρ</strong> ，由这个公式再结合单向应力状态下的胡克定律，可得到梁横截面的应力表达式，<strong>① σ=E•ε=E•a/ρ</strong><ul>
+<li>这里面的ρ是梁发生弯曲变形后的曲率半径；</li>
+<li>a是纵向对称面中的某一层的纤维b’b’离中性层o’o’的距离,在直角坐标系中可以用y表示；  </li>
+</ul>
+</li>
+</ul>
+<p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-8-22/88390171.jpg" alt="梁的弯曲" title="横截面" width="150" height="200"></p>
+<ul>
+<li>为了便于理解，我们在横截面建立直角坐标系，令对称轴为Y轴，中性层为X轴，取任一微面积dxdy,则 <strong>③ σ•dxdy</strong> 是这个微面积上的轴力，对这个公式积分，得到的结果是梁的总的轴力 <strong>② F=∫σ•dxdy</strong>，由于在纯弯曲变形中，梁的轴力是可以不计的，也就是0。</li>
+<li>将<strong>①</strong>式和<strong>②</strong>式结合，可得到 <strong>F=E/ρ•∫ydxdy</strong>=<strong>E/ρ•∫ydA</strong>=0。从而推出S<sub>x</sub>=∫ydA=0，也就是说截面到X轴的<strong>静矩</strong>为0，根据上面的形心坐标公式，X轴是这个图形的形心主轴，同理也可推出Y为形心主轴。这才是<strong>静矩</strong>的正确理解方式。  </li>
+<li>由材料力学的知识，我们知道中性层是用于区分梁的横截面上受拉与受压界面的分界线，那么横截面上的弯矩也就可以由单位面积的轴力对中性轴求矩得到。由<strong>③</strong>式可求得微面积上的轴力，所以微面积上的弯矩可以这么表示：<strong>④ M<sub>x</sub>=yσ•dxdy</strong>,对这个公式积分，就是要求得的弯矩表达示了：<strong>M=∫yσ•dxdy=∫yσ•dA=E/ρ•∫y<sup>2</sup>dA</strong>,积分部分便是所谓的<strong>惯性矩</strong>了。  </li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Materials-Science/" rel="tag">#Materials_Science</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/10/AR book finder/" rel="next" title="AR BOOK FINDER">
+                <i class="fa fa-chevron-left"></i> AR BOOK FINDER
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/28/Diary1/" rel="prev" title="Diary 1">
+                Diary 1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://i61.photobucket.com/albums/h66/Tim_Chou/57_zps99s1ycgl.jpg"
+               alt="Lacant Chow" />
+          <p class="site-author-name" itemprop="name">Lacant Chow</p>
+          <p class="site-description motion-element" itemprop="description">T_T</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#英文的重要性"><span class="nav-number">1.</span> <span class="nav-text">英文的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定积分"><span class="nav-number">2.</span> <span class="nav-text">定积分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#积分表达式"><span class="nav-number">2.0.1.</span> <span class="nav-text">积分表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弯曲变形"><span class="nav-number">3.</span> <span class="nav-text">弯曲变形</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#梁的纯弯曲变形"><span class="nav-number">3.0.1.</span> <span class="nav-text">梁的纯弯曲变形</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弯曲应力"><span class="nav-number">4.</span> <span class="nav-text">弯曲应力</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lacant Chow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
