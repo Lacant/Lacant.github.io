@@ -21,8 +21,8 @@ MathJax 在Hexo中的渲染问题
 		$   em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 ## 代码实现案例
 
-- sigmoid function：$g(z)=\frac{1}{e+e^{-z}}$
-		$ g(z)=\frac{1}{e+e^{-z}}
+- sigmoid function：$g(z)=\frac{1}{1+e^{-z}}$
+		$ g(z)=\frac{1}{1+e^{-z}}
 - sum function: $\sum_{i=1}^n a_i=0$ ($ 表示行内公式)
 		$ \sum_{i=1}^n a_i=0
 - sum function: $$\sum_{i=1}^n a_i=0$$ ($$ 表示整行公式)
