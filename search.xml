@@ -4,6 +4,112 @@
   
     
     <entry>
+      <title><![CDATA[machine learning ex2]]></title>
+      <url>https://lacant.github.io/2018/03/31/180331-machine-learning-ex2/</url>
+      <content type="html"><![CDATA[<p>机器学习编程练习ex2学习小结</p>
+<a id="more"></a>
+<h2 id="exm2-m总纲"><a href="#exm2-m总纲" class="headerlink" title="exm2.m总纲"></a>exm2.m总纲</h2><div align="center">
+<img src="https://github.com/Lacant/blogimg/raw/master/180331/exm2.PNG" alt="git" title="Job exm2" width="500" height="300">
+</div>
+
+<h3 id="code-from-exm2-m"><a href="#code-from-exm2-m" class="headerlink" title="code from exm2.m"></a>code from exm2.m</h3><ul>
+<li><p>add intercept term to martix X, output $X_{m*(n+1)}$;</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[m, n] = size(X);</span><br><span class="line">X = [ones(m, <span class="number">1</span>) X];    % Add <span class="number">1</span> colum to marix X</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>initialize fitting parameters, output $\theta_{(n+1)*1}$;</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">initial_theta = zeros(n + <span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Predict probability:$h_{\theta}(x^{(i)}) =\frac{1}{1+e^{-X\theta}}$</p>
+</li>
+<li><p>define initial cost and gradient function;</p>
+</li>
+<li><p>output initial cost and gradient;</p>
+</li>
+<li><p>Set options for fminunc function;</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">'GradObj'</span>, <span class="string">'on'</span>, <span class="string">'MaxIter'</span>, <span class="number">400</span>);</span><br><span class="line">[theta, cost] = fminunc(@(t)(costFunction(t, X, y)), initial_theta, options); % @(t)(costFunction(t, X, y)) <span class="string">'short-hand'</span> <span class="keyword">for</span> costFunction;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>output $\theta$ and cost with 400 gradients;</p>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习成长 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 作业 </tag>
+            
+            <tag> 练习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[知识库构建（一）：elasticserach安装]]></title>
+      <url>https://lacant.github.io/2018/03/30/%E7%9F%A5%E8%AF%86%E5%BA%93%E6%9E%84%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Aelasticserach%E5%AE%89%E8%A3%85/</url>
+      <content type="html"><![CDATA[<p>elasticsearch的安装与部署</p>
+<a id="more"></a>
+<h2 id="下载及配置"><a href="#下载及配置" class="headerlink" title="下载及配置"></a>下载及配置</h2><h3 id="elasticsearch基本数据结构："><a href="#elasticsearch基本数据结构：" class="headerlink" title="elasticsearch基本数据结构："></a>elasticsearch基本数据结构：</h3><ul>
+<li>index:</li>
+<li>type:</li>
+<li>id:</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> elasticsearch </tag>
+            
+            <tag> zotero </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[els-php安装小结]]></title>
+      <url>https://lacant.github.io/2018/03/28/els-php/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ul>
+<li>php文件的运行，需要php服务器的加载，或者称为搭建php运行环境;</li>
+<li>首先安装php，再安装compose;</li>
+<li>新建一个空文件夹，新建一个composer.json的文件<br>  $compose install    %这个指令的执行，依托于composer.json这个文件。</li>
+<li>php是后端，通过配置Php文档，实行于数据库的数据访问;</li>
+<li>可视化界面是前端工具;</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 网络技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> elasticsearch </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Git版本库创建]]></title>
       <url>https://lacant.github.io/2018/03/26/180326_Git%E7%89%88%E6%9C%AC%E5%BA%93%E5%88%9B%E5%BB%BA/</url>
       <content type="html"><![CDATA[<p>git本地版本库创建与配置（二）</p>
@@ -185,7 +291,7 @@ table th:first-of-type {
 <tbody>
 <tr>
 <td>Hypothesis function</td>
-<td style="text-align:left">$h<em>\theta(x) = \theta_0+ \sum</em>{i=1}^n \theta_ix_i$</td>
+<td style="text-align:left">$h_\theta(x) = \theta_0+ \sum_{i=1}^n \theta_ix_i$</td>
 <td style="text-align:left">/</td>
 </tr>
 <tr>
@@ -195,13 +301,13 @@ table th:first-of-type {
 </tr>
 <tr>
 <td>Cost function</td>
-<td style="text-align:left">$J(\theta) = \frac{1}{2m} \sum<em>{i=1}^m (h</em>\theta(x^i) - y^i)^2$</td>
-<td style="text-align:left">$J(\theta)= -\frac{1}{m} [\sum<em>{i=1}^m y^ilogh</em>\theta(x^i)+ (1-y^i)log(1-h_\theta(x^i))]$</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^i) - y^i)^2$</td>
+<td style="text-align:left">$J(\theta)= -\frac{1}{m} [\sum_{i=1}^m y^ilogh_\theta(x^i)+ (1-y^i)log(1-h_\theta(x^i))]$</td>
 </tr>
 <tr>
 <td>Gradient descent</td>
-<td style="text-align:left">$\frac{\partial}{\partial\theta<em>j}J(\theta) = \frac{1}{m} \sum</em>{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
-<td style="text-align:left">$\frac{\partial}{\partial\theta<em>j}J(\theta) = \frac{1}{m} \sum</em>{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
 </tr>
 <tr>
 <td></td>
@@ -210,7 +316,7 @@ table th:first-of-type {
 </tr>
 <tr>
 <td>Regularization</td>
-<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum<em>{i=1}^m (h</em>\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m (h_\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
 </tr>
 </tbody>
 </table>
@@ -281,8 +387,8 @@ table th:first-of-type {
   $ //em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,    第20行，将其修改为
   $   em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 </code></pre><h2 id="代码实现案例"><a href="#代码实现案例" class="headerlink" title="代码实现案例"></a>代码实现案例</h2></li>
-<li><p>sigmoid function：$g(z)=\frac{1}{e+e^{-z}}$</p>
-<pre><code>  $ g(z)=\frac{1}{e+e^{-z}}
+<li><p>sigmoid function：$g(z)=\frac{1}{1+e^{-z}}$</p>
+<pre><code>  $ g(z)=\frac{1}{1+e^{-z}}
 </code></pre></li>
 <li>sum function: $\sum_{i=1}^n a_i=0$ ($ 表示行内公式)<pre><code>  $ \sum_{i=1}^n a_i=0
 </code></pre></li>
@@ -381,7 +487,8 @@ table th:first-of-type {
     <entry>
       <title><![CDATA[fq原理]]></title>
       <url>https://lacant.github.io/2018/03/20/openwrt-ss%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-      <content type="html"><![CDATA[<ul>
+      <content type="html"><![CDATA[<p>ss组件小结<br><a id="more"></a></p>
+<ul>
 <li>OpenwrtSS所需组件:<ul>
 <li>dnsmasq</li>
 <li>ChinaDns</li>
@@ -1129,53 +1236,6 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
-      <title><![CDATA[极限小结]]></title>
-      <url>https://lacant.github.io/2016/07/27/Lim/</url>
-      <content type="html"><![CDATA[<p>极限复习小结</p>
-<a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
-<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
-<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
-<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
-<li>Taylor公式的应用的注意事项：  <ul>
-<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
-<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
-<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
-</ul>
-</li>
-<li>数列极限的计算：  <ul>
-<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
-<li>夹逼准则；</li>
-<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
-</ul>
-</li>
-<li>函数的连续性：  <ul>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
-<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> 高等数学 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 函数极限 </tag>
-            
-            <tag> 数列极限 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[常用数学符号]]></title>
       <url>https://lacant.github.io/2016/07/27/MATH%20CODE/</url>
       <content type="html"><![CDATA[<p>常用数学符号</p>
@@ -1404,6 +1464,53 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
+      <title><![CDATA[极限小结]]></title>
+      <url>https://lacant.github.io/2016/07/27/Lim/</url>
+      <content type="html"><![CDATA[<p>极限复习小结</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>函数极限的定义 <strong>lim f(x)=A</strong>：<br>存在∀Ԑ&gt;0，当∃δ&gt;0，0&lt;|x-x<sub>0</sub>|&lt;δ时，|f(x)-A|&lt;Ԑ；</li>
+<li>数列极限的定义 <strong>lim {X<sub>n</sub>}=a</strong>：<br>存在∀Ԑ&gt;0，当∃N&gt;0，n&gt;N时，|X<sub>n</sub>-a|&lt;Ԑ；  </li>
+<li>这里要明晰这两个基本定义中关于 <strong>Ԑ</strong> 和 <strong>δ</strong> 的定义：<br>其中 <strong>Ԑ</strong> 是任意大于0的实数，是确定的数，不能是无穷大或是无穷小； <strong>δ</strong> 具有存在性，而非唯一性。  </li>
+<li>极限计算中的七种未定式判定：<br>0|0，∞|∞，∞•0，∞-∞，∞<sup>0</sup>，0<sup>0</sup>，1<sup>∞</sup>  </li>
+<li>Taylor公式的应用的注意事项：  <ul>
+<li>根据定义，所有 <strong>可导</strong> 的函数f(x)才可以展开为幂指函数；  </li>
+<li>在求导过程中，<strong>因式</strong> 可以用Taylor公式展开；  </li>
+<li>Taylor公式的展开 <strong>仅</strong> 适用于 <strong>A-B型</strong>，展开项应为系数不同的最低次幂。  </li>
+</ul>
+</li>
+<li>数列极限的计算：  <ul>
+<li>归结原理（海涅定理）也就是用x代入计算x<sub>n</sub>；</li>
+<li>夹逼准则；</li>
+<li>单调有界准则：{x<sub>n</sub>}单调↗ 且有<strong>上界</strong>或是{x<sub>n</sub>}单调↘且有<strong>下界</strong>。</li>
+</ul>
+</li>
+<li>函数的连续性：  <ul>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim Δy=lim [f(x<sub>0</sub>+Δx)-f(x<sub>0</sub>)]=0，则称f(x)在点x<sub>0</sub>处连续；</li>
+<li>f(x)在点x<sub>0</sub>某邻域内有定义，若Δx→0，lim f(x)=f(x<sub>0</sub>)，则称f(x)在点x<sub>0</sub>处连续。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 高等数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 函数极限 </tag>
+            
+            <tag> 数列极限 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Chapter 10th-2]]></title>
       <url>https://lacant.github.io/2016/07/20/Chapter%2010-2/</url>
       <content type="html"><![CDATA[<p>老朱第十章课后习题作业（二）</p>
@@ -1591,6 +1698,25 @@ $ hexo s       % 运行本地服务 http://localhost:4000
     </entry>
     
     <entry>
+      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
+      <url>https://lacant.github.io/2016/07/17/about_me/</url>
+      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
+<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
+<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
+<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
+<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 心情 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[文科小白Hexo建站]]></title>
       <url>https://lacant.github.io/2016/07/17/%E6%96%87%E7%A7%91%E5%B0%8F%E7%99%BDHexo%E5%BB%BA%E7%AB%99/</url>
       <content type="html"><![CDATA[<p>作为一个毫无代码经验的理科生，得幸有些扎实的互联网基础，这篇文章是为了分享在建站的过程可会遇到一些的基本概念，撑握了这些概念，便能方便地使用Github来搭建个人博客。同时也是回应在Wechat公众号里发布的收费课程，在我的概念里，互联网的精神是分享，将这类简单的技术做成收费视频，是我坚决抵制的，毕竟我们只为了搭建一个可以自由写作的平台，仅此而已。<br><a id="more"></a></p>
@@ -1646,25 +1772,6 @@ $ hexo s       % 运行本地服务 http://localhost:4000
             <tag> hexo </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[坐收渔翁之利|另一种生活的开始]]></title>
-      <url>https://lacant.github.io/2016/07/17/about_me/</url>
-      <content type="html"><![CDATA[<p>人们常说，与何种人交朋友，你就慢慢会变成什么样的人。人的一生与谁相伴时间最长？不是父母，<br><br>不是子女，不是同事，而是自己的另一半。那么，选择自己另一半的重要性就不言而喻了。每个人都<br>有选择另一半的偏好，而找到了自己想要的那一个是幸运。无疑，我幸运的。与他在一起的生活，更<br>新了我对这个世界的原有认知。<br><a id="more"></a><br>建立这个博客，就是其一。当然，博客的搭建过程，我有些坐收渔翁之利了。偶然从他人分享的内容<br>里，了解到markdown、github，我个人感觉很有意思，也是很有用的工具，但一直并未动手去做，<br>去学习。相反，是他一点一点地摸索，然后与我分享，我在他的引导下，开始尝试，直到现在坐在这<br>里码字。我想这就是他的魅力之处。在一起，是一种幸运。</p>
-<h2 id="一成不变的生活"><a href="#一成不变的生活" class="headerlink" title="一成不变的生活"></a>一成不变的生活</h2><p>人与生俱来的好奇心，驱使人不断探索未知的世界。随着年龄的增长，有些人的好奇心慢慢消失了。<br>他们慢慢开始了日复一日的生活。年少时，很纠结，一直认为那种生活的状态是“活死人”。我所有的<br>力量就在于逃脱“活死人”的命运。谁也不知未来会发生什么？终于置之死地而后生，在经历了一些低<br>谷后，我幸运地终于遇到了一些人。这些人是好奇心还未消失的人，我的生活也不再是一潭死水，终<br>于激起一丝涟漪。新的生活一旦开始，一切都变得不再一样，轨迹发生了转向，具体会开向哪里？我<br>也不知道。人对未知有着天然的恐惧。而我再慢慢克服这种恐惧，感受未知带来的不同。</p>
-<h2 id="谁在画地为牢？"><a href="#谁在画地为牢？" class="headerlink" title="谁在画地为牢？"></a>谁在画地为牢？</h2><p>当我们面对陌生领域时，以开放的心态面对它，了解他。我一直认为应该慎言慎行，若面对一个自己<br>并不了解的事情，妄加评论是不负责任的行为。只有了解，才有可能理性评价或批判。所以，我也乐<br>意以开放的心态面对自己的生活，学习新鲜的事物，尝试不同领域，而非画地为牢，把自己放在套子<br>里。当以如此的心态生活时，会突然发现原来自己的潜力是无穷的。很多事情都变得有意思起来。像<br>现在，我拾起来了大学时学的零星的键盘，终于可以双手弹着《很久很久以前》，这的确很大地提升<br>生活的旨趣。</p>
-<p>当一个人自己的世界变得丰盈起来，自己的能量场不断增强，那么就不那么手其他人影响。</p>
-<p>打理自己世界是件不可或缺的事情，园子的荒草逐渐发新芽了，期待郁郁葱葱！</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 心情 </category>
-            
-        </categories>
-        
         
     </entry>
     

@@ -93,7 +93,7 @@
 <meta property="og:description" content="吴坦恩机器学习课程小结">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/Lacant/test01/raw/master/costfunction.jpeg">
-<meta property="og:updated_time" content="2018-03-26T11:54:18.884Z">
+<meta property="og:updated_time" content="2018-03-31T07:19:04.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Review:Linear Regression VS Logical Regression">
 <meta name="twitter:description" content="吴坦恩机器学习课程小结">
@@ -374,7 +374,7 @@ table th:first-of-type {
 <tbody>
 <tr>
 <td>Hypothesis function</td>
-<td style="text-align:left">$h<em>\theta(x) = \theta_0+ \sum</em>{i=1}^n \theta_ix_i$</td>
+<td style="text-align:left">$h_\theta(x) = \theta_0+ \sum_{i=1}^n \theta_ix_i$</td>
 <td style="text-align:left">/</td>
 </tr>
 <tr>
@@ -384,13 +384,13 @@ table th:first-of-type {
 </tr>
 <tr>
 <td>Cost function</td>
-<td style="text-align:left">$J(\theta) = \frac{1}{2m} \sum<em>{i=1}^m (h</em>\theta(x^i) - y^i)^2$</td>
-<td style="text-align:left">$J(\theta)= -\frac{1}{m} [\sum<em>{i=1}^m y^ilogh</em>\theta(x^i)+ (1-y^i)log(1-h_\theta(x^i))]$</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^i) - y^i)^2$</td>
+<td style="text-align:left">$J(\theta)= -\frac{1}{m} [\sum_{i=1}^m y^ilogh_\theta(x^i)+ (1-y^i)log(1-h_\theta(x^i))]$</td>
 </tr>
 <tr>
 <td>Gradient descent</td>
-<td style="text-align:left">$\frac{\partial}{\partial\theta<em>j}J(\theta) = \frac{1}{m} \sum</em>{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
-<td style="text-align:left">$\frac{\partial}{\partial\theta<em>j}J(\theta) = \frac{1}{m} \sum</em>{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
+<td style="text-align:left">$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^i)-y^i)x_j^i$</td>
 </tr>
 <tr>
 <td></td>
@@ -399,7 +399,7 @@ table th:first-of-type {
 </tr>
 <tr>
 <td>Regularization</td>
-<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum<em>{i=1}^m (h</em>\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
+<td style="text-align:left">$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m (h_\theta(x^i) - y^i)^2 + \lambda \sum_{i=1}^n\theta_j^2]$</td>
 </tr>
 </tbody>
 </table>
@@ -496,13 +496,9 @@ table th:first-of-type {
         <!-- JiaThis Button BEGIN -->
 <div class="jiathis_style">
   <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
   <a class="jiathis_button_weixin"></a>
   <a class="jiathis_button_cqq"></a>
   <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
   <a class="jiathis_button_copy"></a>
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
@@ -569,7 +565,7 @@ table th:first-of-type {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -577,7 +573,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -586,7 +582,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
